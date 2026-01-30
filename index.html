@@ -1,81 +1,231 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Enhanced Light Crosswalk Illumination</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Project webpage with field setup photos, demo videos, and a QR code for Enhanced Light Crosswalk Illumination.">
   <style>
-    body {
+    body{
       font-family: system-ui, Arial, sans-serif;
-      max-width: 900px;
-      margin: 50px auto;
-      padding: 0 18px;
+      max-width: 1040px;
+      margin: 48px auto;
+      padding: 0 16px;
       line-height: 1.6;
+      color: #111;
     }
-    h1 { font-size: 34px; margin-bottom: 6px; }
-    h2 { margin-top: 28px; }
-    .subtitle { color: #555; margin-bottom: 28px; }
-    .box {
+    h1{
+      margin: 0 0 6px;
+      font-size: 34px;
+      letter-spacing: 0.2px;
+    }
+    h2{
+      margin: 22px 0 10px;
+      font-size: 22px;
+    }
+    p{ margin: 10px 0; }
+    .subtitle{
+      color:#555;
+      margin: 0 0 18px;
+    }
+    .topbar{
+      display:flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin: 14px 0 22px;
+    }
+    .badge{
+      border: 1px solid #e5e7eb;
+      border-radius: 999px;
+      padding: 6px 10px;
+      color: #333;
+      font-size: 13px;
+      background: #fafafa;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+    .box{
       border: 1px solid #e5e7eb;
       border-radius: 14px;
       padding: 18px;
-      margin: 16px 0;
+      background: #fff;
     }
-    footer {
-      margin-top: 40px;
-      color: #666;
+    .muted{ color:#666; }
+    .btnrow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+    .btn{
+      display:inline-block;
+      padding: 10px 14px;
+      border: 1px solid #d1d5db;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #111;
+      background: #fff;
+    }
+    .btn:hover{ background:#f7f7f7; }
+    .gallery{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+    img{
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid #eee;
+      background: #fafafa;
+    }
+    ul{ margin: 8px 0 0 18px; }
+    li{ margin: 6px 0; }
+    .small{ font-size: 14px; }
+    footer{
+      margin-top: 26px;
+      color:#666;
       font-size: 14px;
+      border-top: 1px solid #eee;
+      padding-top: 16px;
+    }
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .gallery{ grid-template-columns: 1fr; }
+      h1{ font-size: 30px; }
+    }
+    code{
+      background:#f6f8fa;
+      padding: 2px 6px;
+      border-radius: 8px;
     }
   </style>
 </head>
 
 <body>
   <h1>Enhanced Light Crosswalk Illumination</h1>
-  <div class="subtitle">
-    Field evaluation of crosswalk illumination for improved nighttime pedestrian safety
+  <p class="subtitle">
+    Field demonstration page with photos, demo videos, and a QR code for quick access.
+  </p>
+
+  <div class="topbar">
+    <span class="badge">Nighttime visibility</span>
+    <span class="badge">Field experiments</span>
+    <span class="badge">Demo videos</span>
+    <span class="badge">QR scan</span>
   </div>
 
-  <div class="box">
-    <h2>Project Overview</h2>
-    <p>
-      This project evaluates an enhanced crosswalk illumination system designed to improve
-      nighttime visibility of pedestrians, pavement markings, and crossing areas at stop
-      and yield controlled locations.
+  <div class="grid">
+    <div class="box">
+      <h2>Project Overview</h2>
+      <p>
+        This project demonstrates an enhanced crosswalk illumination system designed to improve nighttime
+        visibility of pedestrians, pavement markings, and the crossing area at stop and yield controlled locations.
+      </p>
+      <p class="muted">
+        The enhanced crosswalk illumination device is planned for future installation on campus.
+      </p>
+
+      <h2>Experiment Sites</h2>
+      <ul>
+        <li><strong>Madison, WI</strong> (field experiment setting)</li>
+        <li><strong>Milwaukee, WI</strong> (field experiment setting)</li>
+      </ul>
+
+      <h2>What visitors can view here</h2>
+      <ul>
+        <li>Field setup photos and equipment placement</li>
+        <li>Short demo videos showing illumination performance</li>
+        <li>Summary of data collected during experiments</li>
+      </ul>
+
+      <div class="btnrow">
+        <a class="btn" href="https://github.com/iamfahad289/Enhanced-Light-Crosswalk-Illumination" target="_blank" rel="noopener">Repository</a>
+        <a class="btn" href="#videos">Demo Videos</a>
+        <a class="btn" href="#photos">Photos</a>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>Scan to learn more</h2>
+      <p class="muted small">
+        Place this QR code on a poster or at the demo table. It links to this webpage.
+      </p>
+      <img src="qr.png" alt="QR code to this webpage">
+      <p class="muted small">
+        Upload a QR image named <code>qr.png</code> to the repository root to display it here.
+      </p>
+      <p class="muted small">
+        Page link: <code>https://iamfahad289.github.io/Enhanced-Light-Crosswalk-Illumination/</code>
+      </p>
+    </div>
+  </div>
+
+  <div id="photos" class="box" style="margin-top:14px;">
+    <h2>Field Setup Photos</h2>
+    <p class="muted">
+      Replace the placeholder filenames with your real images. Recommended size: 1600px wide or higher.
+    </p>
+
+    <div class="gallery">
+      <img src="images/setup_madison_1.jpg" alt="Madison field setup photo 1">
+      <img src="images/setup_madison_2.jpg" alt="Madison field setup photo 2">
+      <img src="images/setup_milwaukee_1.jpg" alt="Milwaukee field setup photo 1">
+    </div>
+
+    <p class="muted small">
+      Create an <code>images</code> folder in the repo and upload files matching the names above, or rename the <code>src</code> paths.
     </p>
   </div>
 
-  <div class="box">
-    <h2>Objectives</h2>
-    <ul>
-      <li>Improve pedestrian visibility during nighttime crossings</li>
-      <li>Quantify illumination performance using field measurements</li>
-      <li>Analyze driver response and safety related behavior</li>
-    </ul>
+  <div id="videos" class="box" style="margin-top:14px;">
+    <h2>Demo Videos</h2>
+    <p class="muted">
+      Use YouTube unlisted links or public Google Drive links. Replace the placeholders below.
+    </p>
+
+    <div class="btnrow">
+      <a class="btn" href="VIDEO_LINK_1" target="_blank" rel="noopener">Nighttime Demo, Madison Site</a>
+      <a class="btn" href="VIDEO_LINK_2" target="_blank" rel="noopener">Nighttime Demo, Milwaukee Site</a>
+    </div>
+
+    <p class="muted small">
+      Replace <code>VIDEO_LINK_1</code> and <code>VIDEO_LINK_2</code> with your real URLs.
+    </p>
   </div>
 
-  <div class="box">
-    <h2>Data Collection</h2>
+  <div class="box" style="margin-top:14px;">
+    <h2>Collected Data Summary</h2>
     <ul>
-      <li>Continuous GNSS trajectory data</li>
+      <li>GNSS trajectory data sampled at 125 Hz (0.008 s interval)</li>
       <li>Road facing and driver facing video recordings</li>
       <li>Vertical and horizontal illuminance measurements</li>
-      <li>Pedal based driver reaction logs</li>
+      <li>Button logger records for detection events</li>
+      <li>Vehicle and pedestrian trajectories for analysis</li>
     </ul>
+    <p class="muted">
+      Data processing and analysis are currently ongoing.
+    </p>
   </div>
 
-  <div class="box">
-    <h2>Outputs</h2>
-    <ul>
-      <li>Field deployment summaries</li>
-      <li>Figures and plots for technical presentations</li>
-      <li>Dataset documentation and analysis notes</li>
-    </ul>
+  <div class="box" style="margin-top:14px;">
+    <h2>Contact</h2>
+    <p>
+      Fahad Muhammad<br>
+      University of Wisconsin Milwaukee
+    </p>
   </div>
 
   <footer>
-    Maintained by Fahad Muhammad  
-    <br>
-    University of Wisconsin Milwaukee
+    If you are viewing this page at a live demo, scan the QR code above to revisit the videos and photos later.
   </footer>
 </body>
 </html>
+```
