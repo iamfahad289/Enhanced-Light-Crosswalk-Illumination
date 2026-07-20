@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enhanced Light Crosswalk Illumination · WisDOT 0092-25-23</title>
+<meta name="description" content="Blue-spectrum crosswalk lighting measurably improves nighttime pedestrian safety. 281 nighttime field rounds at two Wisconsin sites. WisDOT research project 0092-25-23.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#070B14;
+  --asphalt:#0C1220;
+  --panel:#101a2e;
+  --panel-2:#0e1626;
+  --line:#1d2a44;
+  --ink:#E9EFFB;
+  --mute:#93A1BE;
+  --dim:#6B7A99;
+  --ice:#6FD3FF;          /* Ice Blue — Milwaukee winner */
+  --royal:#3D6BFF;        /* Blue Baseline — generalized winner */
+  --amber:#FDB515;        /* crosswalk-sign yellow, warnings only */
+  --good:#4ADE80;
+  --bad:#F87171;
+  --maxw:1180px;
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+body{
+  background:var(--night);
+  color:var(--ink);
+  font-family:'IBM Plex Sans',system-ui,sans-serif;
+  font-size:16.5px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:rgba(111,211,255,.28)}
+img{max-width:100%;display:block;border-radius:10px}
+a{color:var(--ice);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(7,11,20,.82);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;gap:22px}
+.brand{font-family:'Archivo';font-weight:800;font-size:.95rem;letter-spacing:.02em;color:var(--ink);white-space:nowrap}
+.brand span{color:var(--ice)}
+.nav-links{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;min-width:0}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-family:'IBM Plex Mono';font-size:.74rem;letter-spacing:.04em;
+  color:var(--mute);padding:7px 11px;border-radius:8px;white-space:nowrap;
+}
+.nav-links a:hover{color:var(--ink);background:var(--panel);text-decoration:none}
+.nav-links a.on{color:var(--ice);background:rgba(111,211,255,.09)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;overflow:hidden;padding:88px 0 0}
+.hero-glow{
+  position:absolute;inset:auto 0 0 0;height:78%;pointer-events:none;
+  background:
+    radial-gradient(60% 70% at 50% 108%, rgba(61,107,255,.30), transparent 62%),
+    radial-gradient(34% 42% at 50% 104%, rgba(111,211,255,.34), transparent 70%);
+}
+.hero-in{position:relative;max-width:var(--maxw);margin:0 auto;padding:0 24px;text-align:center}
+.eyebrow{
+  font-family:'IBM Plex Mono';font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ice);
+}
+.hero h1{
+  font-family:'Archivo';font-weight:800;line-height:1.04;letter-spacing:-.015em;
+  font-size:clamp(2.5rem,6.2vw,4.4rem);
+  margin:18px auto 20px;max-width:900px;
+}
+.hero .lede{color:var(--mute);font-size:1.16rem;max-width:640px;margin:0 auto}
+.hero .lede strong{color:var(--ink);font-weight:600}
+.headline-stat{
+  margin:34px auto 8px;display:inline-flex;flex-wrap:wrap;justify-content:center;gap:14px;
+}
+.hs{
+  background:rgba(16,26,46,.7);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px 26px;min-width:180px;
+}
+.hs b{
+  display:block;font-family:'Archivo';font-weight:800;font-size:2rem;line-height:1.1;color:var(--ice);
+}
+.hs.royal b{color:var(--royal);filter:brightness(1.35)}
+.hs small{font-family:'IBM Plex Mono';font-size:.72rem;letter-spacing:.05em;color:var(--mute)}
+.partners{
+  margin:36px auto 0;padding:14px 0 0;border-top:1px solid var(--line);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:10px 28px;
+  font-family:'IBM Plex Mono';font-size:.76rem;letter-spacing:.08em;color:var(--dim);
+}
+/* crosswalk graphic */
+.crosswalk{position:relative;height:230px;margin-top:26px;perspective:520px;overflow:hidden}
+.road{
+  position:absolute;left:50%;bottom:-40px;width:1400px;height:460px;
+  transform:translateX(-50%) rotateX(62deg);
+  background:linear-gradient(180deg, #0a101d 0%, #121c30 100%);
+  border-radius:18px;
+}
+.stripes{position:absolute;inset:0;display:flex;justify-content:center;gap:46px;padding-top:80px}
+.stripe{
+  width:64px;height:190px;border-radius:6px;
+  background:linear-gradient(180deg, rgba(233,239,251,.92), rgba(233,239,251,.55));
+  box-shadow:0 0 34px rgba(111,211,255,.35);
+  animation:glowpulse 4.5s ease-in-out infinite;
+}
+.stripe:nth-child(2){animation-delay:.35s}
+.stripe:nth-child(3){animation-delay:.7s}
+.stripe:nth-child(4){animation-delay:1.05s}
+.stripe:nth-child(5){animation-delay:1.4s}
+.stripe:nth-child(6){animation-delay:1.75s}
+@keyframes glowpulse{
+  0%,100%{box-shadow:0 0 22px rgba(111,211,255,.22)}
+  50%{box-shadow:0 0 52px rgba(111,211,255,.6)}
+}
+.beam{
+  position:absolute;left:50%;bottom:0;width:640px;height:230px;transform:translateX(-50%);
+  background:radial-gradient(50% 100% at 50% 100%, rgba(111,211,255,.28), transparent 70%);
+  pointer-events:none;
+}
+
+/* ---------- SECTIONS ---------- */
+section{padding:88px 0}
+section.alt{background:linear-gradient(180deg,var(--asphalt),transparent)}
+.sec-head{max-width:760px;margin-bottom:44px}
+.sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'IBM Plex Mono';font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ice);
+  margin-bottom:14px;
+}
+.kicker::before{content:"";width:26px;height:2px;background:var(--ice);border-radius:2px;opacity:.7}
+h2{font-family:'Archivo';font-weight:800;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.14;letter-spacing:-.01em}
+.sec-head p{color:var(--mute);margin-top:14px;font-size:1.05rem}
+h3{font-family:'Archivo';font-weight:700;font-size:1.22rem;margin-bottom:10px}
+.note{color:var(--dim);font-size:.85rem;font-family:'IBM Plex Mono'}
+
+/* cards & grids */
+.grid{display:grid;gap:22px}
+.grid>*{min-width:0}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.card{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:26px;
+}
+.card p{color:var(--mute);font-size:.97rem}
+.card .icon{
+  width:42px;height:42px;border-radius:11px;display:grid;place-items:center;margin-bottom:16px;
+  background:rgba(111,211,255,.1);color:var(--ice);font-size:1.15rem;
+}
+.chip{
+  display:inline-block;font-family:'IBM Plex Mono';font-size:.72rem;letter-spacing:.04em;
+  padding:5px 11px;border-radius:99px;border:1px solid var(--line);color:var(--mute);
+  background:var(--panel-2);margin:3px 3px 3px 0;
+}
+.chip.ice{color:var(--ice);border-color:rgba(111,211,255,.35);background:rgba(111,211,255,.07)}
+.chip.royal{color:#8FAAFF;border-color:rgba(61,107,255,.4);background:rgba(61,107,255,.1)}
+.chip.good{color:var(--good);border-color:rgba(74,222,128,.35);background:rgba(74,222,128,.07)}
+.chip.bad{color:var(--bad);border-color:rgba(248,113,113,.35);background:rgba(248,113,113,.07)}
+.chip.amber{color:var(--amber);border-color:rgba(253,181,21,.4);background:rgba(253,181,21,.08)}
+
+/* figure */
+figure.f{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:12px;cursor:zoom-in;transition:transform .25s ease,border-color .25s ease;
+}
+figure.f:hover{transform:translateY(-3px);border-color:rgba(111,211,255,.4)}
+figure.f img{width:100%;background:#fff}
+figure.f figcaption{
+  font-family:'IBM Plex Mono';font-size:.74rem;color:var(--dim);
+  padding:10px 4px 2px;letter-spacing:.02em;
+}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--panel)}
+table{width:100%;border-collapse:collapse;min-width:520px}
+th,td{padding:11px 16px;text-align:left;font-size:.93rem;border-bottom:1px solid var(--line)}
+th{
+  font-family:'IBM Plex Mono';font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--dim);background:var(--panel-2);
+}
+td{color:var(--mute)}
+td b,td strong{color:var(--ink);font-weight:600}
+tr:last-child td{border-bottom:none}
+tr.hl td{background:rgba(111,211,255,.07);color:var(--ink)}
+tr.hl-r td{background:rgba(61,107,255,.1);color:var(--ink)}
+.num{font-family:'IBM Plex Mono';font-size:.9rem}
+
+/* site cards */
+.site-card{overflow:hidden;padding:0}
+.site-card .imgs{display:grid;grid-template-columns:1.35fr 1fr;gap:2px;background:var(--line)}
+.site-card .imgs img{border-radius:0;height:220px;width:100%;object-fit:cover;cursor:zoom-in}
+.site-card .body{padding:24px}
+.site-tag{
+  font-family:'IBM Plex Mono';font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ice);
+}
+.facts{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+
+/* lux scale */
+.lux-scale{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.lux{
+  border:1px solid var(--line);border-radius:var(--r);padding:20px;text-align:center;
+  background:linear-gradient(180deg,var(--panel),var(--panel-2));
+}
+.lux b{display:block;font-family:'Archivo';font-weight:800;font-size:1.9rem;line-height:1.1}
+.lux small{font-family:'IBM Plex Mono';font-size:.72rem;color:var(--mute);letter-spacing:.04em}
+.lux.l1 b{color:var(--dim)}
+.lux.l2 b{color:var(--ice)}
+.lux.l3 b{color:var(--amber)}
+
+/* photo strip */
+.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:22px}
+.strip img{height:150px;width:100%;object-fit:cover;cursor:zoom-in;border:1px solid var(--line)}
+
+/* wide banner figure */
+.banner img{max-height:420px;object-fit:cover}
+
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:step}
+.step{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.step::before{
+  counter-increment:step;content:"0" counter(step);
+  font-family:'IBM Plex Mono';font-size:.75rem;color:var(--ice);letter-spacing:.1em;
+}
+.step h4{font-family:'Archivo';font-weight:700;margin:8px 0 6px;font-size:1.02rem}
+.step p{color:var(--mute);font-size:.87rem}
+
+/* measures */
+.measure{display:flex;gap:16px;align-items:flex-start}
+.measure .m-ic{
+  flex:0 0 46px;height:46px;border-radius:12px;display:grid;place-items:center;
+  font-family:'Archivo';font-weight:800;font-size:.95rem;
+}
+.measure.rt .m-ic{background:rgba(111,211,255,.12);color:var(--ice)}
+.measure.dd .m-ic{background:rgba(61,107,255,.16);color:#8FAAFF}
+
+/* videos */
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.video{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
+}
+.video .vh{position:relative;aspect-ratio:16/9;background:#000}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video .ph{
+  position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+  background:linear-gradient(180deg,#0b1322,#080d18);color:var(--dim);
+  font-family:'IBM Plex Mono';font-size:.78rem;padding:20px;
+}
+.video .vb{padding:16px 18px}
+.video .vb b{font-family:'Archivo';font-weight:700;font-size:.98rem}
+.video .vb p{color:var(--dim);font-size:.82rem;margin-top:3px;font-family:'IBM Plex Mono'}
+
+/* road ruler — signature results visual */
+.ruler{
+  background:var(--panel);border:1px solid var(--line);border-radius:var(--r);
+  padding:28px 26px 20px;
+}
+.ruler h3{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ruler h3 .site-tag{color:var(--mute)}
+.lane{margin:20px 0 6px}
+.lane .lab{
+  display:flex;justify-content:space-between;align-items:baseline;margin-bottom:7px;
+  font-family:'IBM Plex Mono';font-size:.76rem;color:var(--mute);letter-spacing:.03em;
+}
+.lane .lab .val{color:var(--ink);font-size:.9rem}
+.track{
+  position:relative;height:30px;border-radius:8px;overflow:hidden;
+  background:repeating-linear-gradient(90deg, #0b1120 0 34px, #0e1526 34px 40px);
+  border:1px solid var(--line);
+}
+.fill{
+  position:absolute;inset:0 auto 0 0;width:0;border-radius:8px 0 0 8px;
+  transition:width 1.4s cubic-bezier(.22,.9,.35,1);
+}
+.fill.base{background:linear-gradient(90deg,#2a3a5c,#41506f)}
+.fill.enh{background:linear-gradient(90deg,rgba(61,107,255,.85),var(--ice));box-shadow:0 0 24px rgba(111,211,255,.4)}
+.fill .car{
+  position:absolute;right:-4px;top:50%;transform:translateY(-50%);
+  font-size:1rem;filter:grayscale(.2)
+}
+.delta{
+  margin-top:14px;font-family:'IBM Plex Mono';font-size:.8rem;color:var(--good);
+}
+.delta b{font-size:1rem}
+
+/* tabs */
+.tabs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
+.tab-btn{
+  font-family:'Archivo';font-weight:700;font-size:.92rem;letter-spacing:.01em;
+  background:var(--panel);border:1px solid var(--line);color:var(--mute);
+  padding:11px 22px;border-radius:99px;cursor:pointer;transition:.2s;
+}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn.on{background:rgba(111,211,255,.1);border-color:rgba(111,211,255,.45);color:var(--ice)}
+.tab-panel{display:none}
+.tab-panel.on{display:block;animation:fadein .35s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.config-line{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.config-line .chip{font-size:.78rem;padding:7px 14px}
+
+/* findings mini cards */
+.mini{padding:18px}
+.mini b{font-family:'Archivo';font-weight:700;font-size:.95rem;display:block;margin-bottom:6px}
+.mini p{font-size:.87rem}
+
+/* framework steps (vertical) */
+.flow{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;counter-reset:fs}
+.flow .fstep{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.flow .fstep::before{
+  counter-increment:fs;content:counter(fs);
+  display:inline-grid;place-items:center;width:28px;height:28px;border-radius:99px;
+  background:rgba(61,107,255,.18);color:#8FAAFF;font-family:'IBM Plex Mono';font-size:.8rem;margin-bottom:10px;
+}
+.flow .fstep b{display:block;font-family:'Archivo';font-weight:700;font-size:.92rem;margin-bottom:4px}
+.flow .fstep p{color:var(--dim);font-size:.8rem}
+
+/* checklist */
+.checks{display:flex;flex-wrap:wrap;gap:8px}
+
+/* team */
+.team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
+.person{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;text-align:center}
+.person .av{
+  width:52px;height:52px;border-radius:99px;margin:0 auto 12px;display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(61,107,255,.35),rgba(111,211,255,.25));
+  font-family:'Archivo';font-weight:800;color:var(--ink);
+}
+.person b{font-size:.92rem;display:block}
+.person small{color:var(--dim);font-size:.76rem;font-family:'IBM Plex Mono';display:block;margin-top:4px;line-height:1.5}
+
+footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--dim);font-size:.85rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+
+/* lightbox */
+.lb{
+  position:fixed;inset:0;z-index:100;background:rgba(4,7,13,.93);
+  display:none;align-items:center;justify-content:center;padding:30px;cursor:zoom-out;
+}
+.lb.on{display:flex}
+.lb img{max-width:min(1200px,94vw);max-height:88vh;width:auto;border-radius:12px;background:#fff}
+.lb .cap{
+  position:fixed;bottom:18px;left:50%;transform:translateX(-50%);
+  font-family:'IBM Plex Mono';font-size:.78rem;color:var(--mute);
+}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.rv.in{opacity:1;transform:none}
+
+/* responsive */
+@media(max-width:960px){
+  .g3,.pipe,.video-grid{grid-template-columns:1fr 1fr}
+  .flow{grid-template-columns:repeat(2,1fr)}
+  .team-grid{grid-template-columns:repeat(3,1fr)}
+  .strip{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:640px){
+  section{padding:64px 0}
+  .g2,.g3,.pipe,.video-grid,.site-card .imgs{grid-template-columns:1fr}
+  .flow{grid-template-columns:1fr}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .lux-scale{grid-template-columns:1fr}
+  .strip{grid-template-columns:1fr 1fr}
+  .strip img{height:120px}
+  .site-card .imgs img{height:200px}
+  .hs{min-width:140px;padding:14px 18px}
+  .hs b{font-size:1.6rem}
+  table{min-width:440px}
+  th,td{padding:9px 12px;font-size:.87rem}
+  .crosswalk{height:170px}
+  .stripes{gap:28px;padding-top:60px}
+  .stripe{width:40px;height:150px}
+  .banner img{max-height:260px}
+  .ruler{padding:22px 18px 16px}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-in">
+    <a class="brand" href="#top">Crosswalk<span>·</span>Illumination</a>
+    <div class="nav-links">
+      <a href="#problem">Problem</a>
+      <a href="#system">System</a>
+      <a href="#testing">Field Testing</a>
+      <a href="#method">Method</a>
+      <a href="#videos">Videos</a>
+      <a href="#results">Results</a>
+      <a href="#guidelines">Guidelines</a>
+      <a href="#recommendations">Recommendations</a>
+      <a href="#team">Team</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="hero-glow"></div>
+  <div class="hero-in">
+    <div class="eyebrow">WisDOT Research Project 0092-25-23 · Final Report · June 2026</div>
+    <h1>Enhanced Light<br>Crosswalk Illumination</h1>
+    <p class="lede"><strong>Blue-spectrum lighting measurably improves nighttime pedestrian safety.</strong> Drivers detected pedestrians <strong>~40 ft sooner</strong> than the existing baseline — and ~26 ft sooner than 4000 K white — with faster reaction times.</p>
+
+    <div class="headline-stat">
+      <div class="hs"><b data-count="281">0</b><small>nighttime field rounds</small></div>
+      <div class="hs"><b data-count="2">0</b><small>Wisconsin study sites</small></div>
+      <div class="hs"><b data-count="7">0</b><small>spectral configurations</small></div>
+      <div class="hs royal"><b>+63 ft</b><small>earlier detection · Madison</small></div>
+    </div>
+
+    <div class="partners">
+      <span>Wisconsin DOT</span><span>UW–Milwaukee</span><span>UW–Madison</span><span>TAPCO</span>
+    </div>
+  </div>
+  <div class="crosswalk" aria-hidden="true">
+    <div class="road"><div class="stripes">
+      <div class="stripe"></div><div class="stripe"></div><div class="stripe"></div>
+      <div class="stripe"></div><div class="stripe"></div><div class="stripe"></div>
+    </div></div>
+    <div class="beam"></div>
+  </div>
+</header>
+
+<!-- ================= PROBLEM ================= -->
+<section id="problem">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">The Problem</div>
+      <h2>Pedestrians are hardest to see when they need it most</h2>
+      <p>Nighttime visibility is a persistent safety problem — and current guidance leaves three gaps.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card rv">
+        <div class="icon">🌙</div>
+        <h3>Deaths peak at night</h3>
+        <p>Darkness, dark clothing, and complex backgrounds slow driver detection and response.</p>
+      </div>
+      <div class="card rv">
+        <div class="icon">🚸</div>
+        <h3>Existing treatments fall short</h3>
+        <p>RRFBs improve yielding but don't light the pedestrian. HAWK signals are costly. Streetlights light the pavement, not the person.</p>
+      </div>
+      <div class="card rv">
+        <div class="icon">❓</div>
+        <h3>Three gaps in guidance</h3>
+        <p><b style="color:var(--ink)">Spectrum</b> — which color performs best? <b style="color:var(--ink)">Geometry</b> — which height and offset? <b style="color:var(--ink)">Transfer</b> — how to scale results to other roads?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SYSTEM ================= -->
+<section id="system" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">The System</div>
+      <h2>SafeWalk™ prototype with seven adjustable spectra</h2>
+      <p>Purpose-built LED crosswalk illuminator (TAPCO SafeWalk 2.0), configured for field research.</p>
+    </div>
+    <div class="grid g2" style="align-items:start">
+      <div class="rv">
+        <figure class="f"><img src="assets/safewalk-render.jpg" alt="SafeWalk enhanced crosswalk illumination system deployed at a midblock crosswalk" loading="lazy">
+          <figcaption>SafeWalk™ deployed at a midblock crosswalk — Type IV downward beam</figcaption>
+        </figure>
+        <div style="margin-top:16px">
+          <span class="chip ice">≥ 20 lux vertical at pedestrian plane</span>
+          <span class="chip">12–15 ft mounting</span>
+          <span class="chip">Adjustable beam aiming</span>
+          <span class="chip">25° × 24° beam · ≈820 cd/klm</span>
+          <span class="chip">IP66 · −40°F to 176°F</span>
+          <span class="chip">120 mph wind rating</span>
+          <span class="chip">≈2 W per LED · 12 V DC</span>
+          <span class="chip good">Solar + battery compatible</span>
+        </div>
+      </div>
+      <div class="rv">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Configuration</th><th>Type</th><th>Rationale</th></tr></thead>
+            <tbody>
+              <tr><td><b>4000 K</b></td><td>Neutral white</td><td>FHWA / agency reference</td></tr>
+              <tr><td><b>5000 K</b></td><td>Cool white</td><td>One step above standard</td></tr>
+              <tr><td><b>6500 K</b></td><td>Daylight white</td><td>Upper white-light boundary</td></tr>
+              <tr class="hl-r"><td><b>Blue Baseline</b></td><td>Blue-shifted LED</td><td>Reference blue configuration</td></tr>
+              <tr class="hl"><td><b>Ice Blue</b></td><td>Blue-shifted LED</td><td>Blue + white mix, highest luminance</td></tr>
+              <tr><td><b>Sky Blue</b></td><td>Blue-shifted LED</td><td>Mid-intensity mix</td></tr>
+              <tr><td><b>Pure Royal Blue</b></td><td>Saturated blue</td><td>Maximum blue saturation</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" style="margin-top:12px">Seven spectral configurations — the agency-recommended white range plus the blue-shifted range never before field-tested in Wisconsin.</p>
+      </div>
+    </div>
+    <figure class="f rv" style="margin-top:22px"><img src="assets/spectra-prototypes.jpg" alt="Prototype spectral configurations assembled for testing" loading="lazy">
+      <figcaption>Prototype modules assembled for testing — 4000 K · 5000 K · 6500 K · RGB blue-light</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ================= FIELD TESTING ================= -->
+<section id="testing">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Field Testing</div>
+      <h2>281 nighttime rounds at two Wisconsin sites</h2>
+      <p>An instrumented probe vehicle approached the crosswalk while a mannequin on a remote-controlled electric skateboard crossed — repeatable pedestrian events, real roads, real nights.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card site-card rv">
+        <div class="imgs">
+          <img src="assets/madison-layout.jpg" alt="Madison field experiment layout" loading="lazy" data-full="assets/madison-full.jpg" data-cap="Madison field experiment — layout, mannequin crossing, lux meter, vehicle approach path">
+          <img src="assets/madison-map.jpg" alt="Madison site map and baseline lux measurement" loading="lazy" data-full="assets/madison-full.jpg" data-cap="Madison site map, street parking, and baseline lux measurement">
+        </div>
+        <div class="body">
+          <div class="site-tag">Madison · 104 rounds</div>
+          <h3 style="margin-top:6px">Williamson St &amp; S Dickinson St</h3>
+          <p style="color:var(--mute);font-size:.94rem">Wider 4-lane urban roadway · existing RRFB + push buttons · visually complex background.</p>
+          <div class="facts">
+            <span class="chip">Baseline ≈ 0.5 lux</span>
+            <span class="chip">Heights: 10 / 12.5 / 15 ft</span>
+            <span class="chip">RRFB present</span>
+          </div>
+        </div>
+      </div>
+      <div class="card site-card rv">
+        <div class="imgs">
+          <img src="assets/milwaukee-layout.jpg" alt="Milwaukee field experiment layout" loading="lazy" data-full="assets/milwaukee-full.jpg" data-cap="Milwaukee field experiment — N Maryland Ave, enhanced streetlight, illuminator, mannequin system">
+          <img src="assets/milwaukee-map.jpg" alt="Milwaukee site map with U-turn test route" loading="lazy" data-full="assets/milwaukee-full.jpg" data-cap="Milwaukee U-turn test route on N Maryland Ave, UWM campus">
+        </div>
+        <div class="body">
+          <div class="site-tag">Milwaukee · 177 rounds</div>
+          <h3 style="margin-top:6px">N Maryland Ave · UWM campus</h3>
+          <p style="color:var(--mute);font-size:.94rem">Two-lane campus roadway · no RRFB or push button · ambient street lighting.</p>
+          <div class="facts">
+            <span class="chip">Baseline ≈ 13 lux</span>
+            <span class="chip">Heights: 7.5 / 10 / 12.5 ft</span>
+            <span class="chip">Lateral: 0 / 9.5 / 16.5 ft</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:22px;align-items:start">
+      <div class="rv">
+        <h3>What we varied</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Factor</th><th>Levels</th></tr></thead>
+            <tbody>
+              <tr><td><b>Lighting spectrum</b></td><td>4000 K · 5000 K · 6500 K · 4 blue configs</td></tr>
+              <tr><td><b>Mounting height</b></td><td>3 heights per site</td></tr>
+              <tr><td><b>Lateral distance</b></td><td>0 / 9.5 / 16.5 ft (Milwaukee)</td></tr>
+              <tr><td><b>Pedestrian target</b></td><td>Adult &amp; child mannequins</td></tr>
+              <tr><td><b>Clothing</b></td><td>Dark blue &amp; white</td></tr>
+              <tr><td><b>Obstruction</b></td><td>Clear · small vehicle · van parked</td></tr>
+              <tr><td><b>Weather / ambient</b></td><td>Clear night · light rain · ± streetlight</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="rv">
+        <h3>Instrumentation</h3>
+        <figure class="f"><img src="assets/equipment.jpg" alt="Field hardware: mannequins on skateboards, cameras, GPS, brake logger, lux meter, test vehicles" loading="lazy">
+          <figcaption>Field hardware — mannequin skateboards · 4K dual cameras · brake foot switch · lux meter · GPS · two sedans + one van</figcaption>
+        </figure>
+        <div style="margin-top:14px">
+          <span class="chip ice">125 Hz GPS</span>
+          <span class="chip">Roadway camera</span>
+          <span class="chip">Driver IR camera</span>
+          <span class="chip">Brake logger</span>
+          <span class="chip">Lux meter</span>
+          <span class="chip">Remote skateboard control</span>
+        </div>
+        <p class="note" style="margin-top:12px">Drivers were never told when or where the mannequin would cross.</p>
+      </div>
+    </div>
+
+    <div class="rv" style="margin-top:34px">
+      <h3>Measured illuminance at the crosswalk (Madison)</h3>
+      <div class="lux-scale">
+        <div class="lux l1"><b>≈ 0.5 lux</b><small>Baseline · no enhanced lighting</small></div>
+        <div class="lux l2"><b>≈ 21 lux</b><small>Enhanced crosswalk lighting</small></div>
+        <div class="lux l3"><b>≈ 40 lux</b><small>Enhanced + floodlight (streetlight sim.)</small></div>
+      </div>
+      <div class="grid g2" style="margin-top:16px">
+        <figure class="f"><img src="assets/lux-measurements.jpg" alt="Lux meter readings: 0.5, 21, and 40 lux" loading="lazy">
+          <figcaption>Lux meter readings — (a) 0.5 lux baseline · (b) 21 lux enhanced · (c) 40 lux with floodlight</figcaption>
+        </figure>
+        <figure class="f"><img src="assets/night-setup.jpg" alt="Nighttime field testing setup at Madison and Milwaukee" loading="lazy">
+          <figcaption>Nighttime testing — (a) Madison, wet pavement · (b) Milwaukee, blue-lit crosswalk</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <div class="rv" style="margin-top:34px">
+      <h3>Field effort under harsh conditions</h3>
+      <p style="color:var(--mute)">All 281 rounds ran at night — including light rain, wet pavement, and late-season cold.</p>
+      <div class="strip">
+        <img src="assets/field-1.jpg" alt="Instrumented test vehicle on wet night street" loading="lazy">
+        <img src="assets/field-2.jpg" alt="Field tent on flooded street" loading="lazy">
+        <img src="assets/field-3.jpg" alt="Mannequin crossing in fog at night" loading="lazy">
+        <img src="assets/field-4.jpg" alt="Night crosswalk testing" loading="lazy">
+        <img src="assets/field-5.jpg" alt="Team setting up equipment in the cold" loading="lazy">
+        <img src="assets/madison-wet.jpg" alt="Wide view of the wet Madison test street at night" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= METHOD ================= -->
+<section id="method" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">How We Measured</div>
+      <h2>Deep-learning eye tracking of real drivers</h2>
+      <p>A CNN pipeline found the exact frame each driver first recognized the pedestrian — then synchronized it with GPS, speed, and brake records.</p>
+    </div>
+
+    <div class="pipe rv">
+      <div class="step"><h4>Collect</h4><p>GPS · roadway video · driver IR video · brake logs — all synchronized.</p></div>
+      <div class="step"><h4>Synchronize</h4><p>3.5 s event clips centered on each brake press.</p></div>
+      <div class="step"><h4>Detect</h4><p>CNN face landmarks → gaze vector → first recognition frame.</p></div>
+      <div class="step"><h4>Measure</h4><p>RT = brake − eye onset · DD = distance at onset.</p></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:22px">
+      <figure class="f rv"><img src="assets/eye-face.jpg" alt="CNN face landmark localization" loading="lazy"><figcaption>(a) CNN face landmarks</figcaption></figure>
+      <figure class="f rv"><img src="assets/eye-region.jpg" alt="Pupil center and gaze vector estimation" loading="lazy"><figcaption>(b) Pupil center &amp; gaze vector</figcaption></figure>
+      <figure class="f rv"><img src="assets/eye-timeline.jpg" alt="Frame-level gaze timeline with eye onset" loading="lazy"><figcaption>(c) Gaze timeline → eye onset → RT</figcaption></figure>
+    </div>
+
+    <div class="grid g2" style="margin-top:26px">
+      <div class="card rv">
+        <div class="measure rt">
+          <div class="m-ic">RT</div>
+          <div><h3>Reaction Time</h3><p style="color:var(--mute);font-size:.95rem">First recognition → brake press. <b style="color:var(--ink)">Shorter is better.</b></p></div>
+        </div>
+      </div>
+      <div class="card rv">
+        <div class="measure dd">
+          <div class="m-ic">DD</div>
+          <div><h3>Detection Distance</h3><p style="color:var(--mute);font-size:.95rem">Vehicle-to-crosswalk distance at first recognition. <b style="color:var(--ink)">Longer is better.</b></p></div>
+        </div>
+      </div>
+    </div>
+
+    <figure class="f rv" style="margin-top:22px"><img src="assets/rt-dd-concept.jpg" alt="Conceptual top view of reaction time and detection distance" loading="lazy">
+      <figcaption>Conceptual top view — reaction distance + braking distance, all referenced to a fixed crosswalk location</figcaption>
+    </figure>
+
+    <div class="grid g2" style="margin-top:22px;align-items:start">
+      <figure class="f rv"><img src="assets/gps-trajectory.jpg" alt="GPS trajectory mapping for the Madison experiment" loading="lazy">
+        <figcaption>125 Hz GPS trajectory mapping — Madison approach path verification</figcaption>
+      </figure>
+      <div class="card rv">
+        <h3>Quality control</h3>
+        <p style="color:var(--mute);font-size:.95rem;margin-bottom:14px">Every eye onset was verified against the driver video, the roadway video, and the brake-event timestamp before analysis.</p>
+        <span class="chip ice">Face detection 95.6% combined</span>
+        <span class="chip">93.8% Milwaukee</span>
+        <span class="chip">98.6% Madison</span>
+        <span class="chip">30 fps IR video · ≈33 ms resolution</span>
+        <span class="chip">Blinks, saccades &amp; head pose filtered from noise</span>
+        <p class="note" style="margin-top:14px">Only trials passing synchronization, video, GPS, and brake-match checks entered the final analysis.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VIDEOS ================= -->
+<section id="videos">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="kicker" style="justify-content:center">Watch</div>
+      <h2>See the system in action</h2>
+      <p>Live nighttime demonstrations at both sites, and the eye-tracking pipeline running on driver video.</p>
+    </div>
+    <div class="grid g2 rv" style="margin-bottom:26px;align-items:center">
+      <figure class="f"><img src="assets/demonstrations.jpg" alt="Enhanced lighting demonstrations at the Madison and Milwaukee sites" loading="lazy">
+        <figcaption>Live demonstrations at Madison (a, b) and Milwaukee (c–e)</figcaption>
+      </figure>
+      <div class="card">
+        <h3>Live demonstrations for the WisDOT POC</h3>
+        <p style="color:var(--mute);font-size:.95rem;margin-top:8px">Held at both study sites under real nighttime conditions. The committee observed illumination coverage, vehicle approach, and mannequin crossings first-hand.</p>
+        <div style="margin-top:14px">
+          <span class="chip">Madison — wider urban roadway · RRFB · wet pavement</span>
+          <span class="chip">Milwaukee — two-lane campus roadway · pedestrian activity</span>
+          <span class="chip ice">Strong interest in the blue-light option at SE WI Transportation Symposium 2025</span>
+        </div>
+      </div>
+    </div>
+    <div class="video-grid rv">
+      <div class="video">
+        <div class="vh" data-yt="YOUTUBE_ID_MILWAUKEE"><div class="ph">▶ Add YouTube ID for the Milwaukee demo<br>(edit VIDEO_IDS in index.html)</div></div>
+        <div class="vb"><b>Milwaukee Demonstration</b><p>N Maryland Ave · two-lane campus roadway</p></div>
+      </div>
+      <div class="video">
+        <div class="vh" data-yt="YOUTUBE_ID_MADISON"><div class="ph">▶ Add YouTube ID for the Madison demo<br>(edit VIDEO_IDS in index.html)</div></div>
+        <div class="vb"><b>Madison Demonstration</b><p>Williamson St &amp; S Dickinson St · RRFB site</p></div>
+      </div>
+      <div class="video">
+        <div class="vh" data-yt="YOUTUBE_ID_EYETRACK"><div class="ph">▶ Add YouTube ID for the eye-tracking demo<br>(edit VIDEO_IDS in index.html)</div></div>
+        <div class="vb"><b>Eye-Tracking Pipeline</b><p>Driver-facing infrared video · onset detection</p></div>
+      </div>
+    </div>
+    <p class="note rv" style="text-align:center;margin-top:18px">Demonstrated live to the WisDOT Project Oversight Committee at both sites, and at the SE Wisconsin Transportation Symposium 2025.</p>
+  </div>
+</section>
+
+<!-- ================= RESULTS ================= -->
+<section id="results" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Results</div>
+      <h2>Blue-spectrum lighting won at both sites</h2>
+      <p>Baseline vs. enhanced lighting — measured driver reaction time and detection distance.</p>
+    </div>
+
+    <figure class="f rv banner" style="margin-bottom:34px"><img src="assets/aerial-crosswalk.jpg" alt="Aerial view of the blue-lit crosswalk during Milwaukee nighttime testing" loading="lazy">
+      <figcaption>Blue-spectrum enhanced lighting on the Milwaukee crosswalk during nighttime testing</figcaption>
+    </figure>
+
+    <!-- signature: road-ruler comparison -->
+    <div class="grid g2 rv">
+      <div class="ruler" data-max="300">
+        <h3>Madison <span class="site-tag">· Blue Baseline</span></h3>
+        <div class="lane">
+          <div class="lab"><span>Baseline · RT 0.71 s</span><span class="val num">212 ft</span></div>
+          <div class="track"><div class="fill base" data-ft="212"><span class="car">🚗</span></div></div>
+        </div>
+        <div class="lane">
+          <div class="lab"><span style="color:var(--ice)">Enhanced · RT 0.67 s</span><span class="val num" style="color:var(--ice)">275 ft</span></div>
+          <div class="track"><div class="fill enh" data-ft="275"><span class="car">🚗</span></div></div>
+        </div>
+        <div class="delta">▲ <b>+63 ft</b> earlier detection · faster reaction</div>
+      </div>
+      <div class="ruler" data-max="300">
+        <h3>Milwaukee <span class="site-tag">· Ice Blue</span></h3>
+        <div class="lane">
+          <div class="lab"><span>Baseline · RT 0.92 s</span><span class="val num">242 ft</span></div>
+          <div class="track"><div class="fill base" data-ft="242"><span class="car">🚗</span></div></div>
+        </div>
+        <div class="lane">
+          <div class="lab"><span style="color:var(--ice)">Enhanced · RT 0.69 s</span><span class="val num" style="color:var(--ice)">261 ft</span></div>
+          <div class="track"><div class="fill enh" data-ft="261"><span class="car">🚗</span></div></div>
+        </div>
+        <div class="delta">▲ <b>+19 ft</b> earlier detection · RT −0.23 s</div>
+      </div>
+    </div>
+    <p class="note rv" style="margin-top:14px">Overall: blue-spectrum enhanced lighting let drivers detect the pedestrian ~40 ft sooner than baseline and ~26 ft sooner than conventional 4000 K white — with comparable or faster reaction times.</p>
+
+    <!-- tabs -->
+    <div style="margin-top:44px" class="rv">
+      <div class="tabs" role="tablist">
+        <button class="tab-btn on" data-tab="mke" role="tab" aria-selected="true">Milwaukee · 177 rounds</button>
+        <button class="tab-btn" data-tab="msn" role="tab" aria-selected="false">Madison · 104 rounds</button>
+      </div>
+
+      <!-- MILWAUKEE -->
+      <div class="tab-panel on" id="tab-mke" role="tabpanel">
+        <div class="grid g2" style="align-items:start">
+          <div>
+            <h3>Spectrum comparison</h3>
+            <div class="tbl-wrap">
+              <table>
+                <thead><tr><th>Spectrum</th><th>RT (s)</th><th>DD (ft)</th></tr></thead>
+                <tbody>
+                  <tr><td>Baseline (no enhanced)</td><td class="num">0.92</td><td class="num">242.0</td></tr>
+                  <tr><td>4000 K</td><td class="num">0.72</td><td class="num">237.2</td></tr>
+                  <tr><td>5000 K</td><td class="num">0.82</td><td class="num">239.4</td></tr>
+                  <tr><td>6500 K</td><td class="num">0.75</td><td class="num">244.6</td></tr>
+                  <tr><td>Blue Baseline</td><td class="num">0.73</td><td class="num">256.4</td></tr>
+                  <tr class="hl"><td><b>Ice Blue ★</b></td><td class="num"><b>0.69</b></td><td class="num"><b>260.8</b></td></tr>
+                  <tr><td>Pure Royal Blue</td><td class="num">0.83</td><td class="num">239.9</td></tr>
+                  <tr><td>Sky Blue</td><td class="num">1.13</td><td class="num">254.8</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="color:var(--mute);font-size:.92rem;margin-top:12px">Ice Blue strongest overall — one of the fastest reaction times with a practical detection distance. Blue Baseline beat 4000 K by +19.2 ft DD at similar RT.</p>
+          </div>
+          <figure class="f"><img src="assets/mke-spectrum.jpg" alt="Milwaukee spectrum performance comparison" loading="lazy">
+            <figcaption>Milwaukee spectrum performance — RT &amp; DD</figcaption>
+          </figure>
+        </div>
+
+        <div class="grid g2" style="margin-top:22px">
+          <figure class="f"><img src="assets/mke-lateral.jpg" alt="Milwaukee lateral distance comparison" loading="lazy">
+            <figcaption>Lateral placement — best: 9.5 ft</figcaption>
+          </figure>
+          <figure class="f"><img src="assets/mke-height.jpg" alt="Milwaukee mounting height comparison" loading="lazy">
+            <figcaption>Mounting height — best: 12.5 ft</figcaption>
+          </figure>
+        </div>
+
+        <div class="card" style="margin-top:22px">
+          <h3>Recommended Milwaukee configuration</h3>
+          <div class="config-line">
+            <span class="chip ice">Spectrum: Ice Blue</span>
+            <span class="chip">Mounting height: 12.5 ft</span>
+            <span class="chip">Lateral distance: 9.5 ft</span>
+            <span class="chip">Spill control: none</span>
+          </div>
+          <p style="margin-top:12px;font-size:.9rem">Strongest balance of RT, DD, sample size, and installation practicality — the two-lane design basis.</p>
+        </div>
+
+        <div class="grid g3" style="margin-top:22px">
+          <div class="card mini">
+            <figure class="f" style="padding:6px;margin-bottom:10px"><img src="assets/mke-mannequin.jpg" alt="Milwaukee mannequin type results" loading="lazy"></figure>
+            <b>Mannequin type</b><p>Adult vs. child differences were small relative to overlapping error bars.</p>
+          </div>
+          <div class="card mini">
+            <figure class="f" style="padding:6px;margin-bottom:10px"><img src="assets/mke-spill.jpg" alt="Milwaukee spill control results" loading="lazy"></figure>
+            <b>Spill control</b><p>Crosswalk-only lighting showed the longest DD — limited trials, reference only.</p>
+          </div>
+          <div class="card mini">
+            <figure class="f" style="padding:6px;margin-bottom:10px"><img src="assets/mke-obstruction.jpg" alt="Milwaukee obstruction results" loading="lazy"></figure>
+            <b>Obstruction</b><p>A parked vehicle sharply reduced detection distance — the main effect is later recognition.</p>
+          </div>
+        </div>
+        <figure class="f" style="margin-top:22px"><img src="assets/mke-combined.jpg" alt="Milwaukee combined configuration comparison" loading="lazy">
+          <figcaption>Combined comparison — spectrum · lateral distance · mounting height</figcaption>
+        </figure>
+      </div>
+
+      <!-- MADISON -->
+      <div class="tab-panel" id="tab-msn" role="tabpanel">
+        <div class="grid g2" style="align-items:start">
+          <div>
+            <h3>Spectrum comparison</h3>
+            <div class="tbl-wrap">
+              <table>
+                <thead><tr><th>Spectrum</th><th>RT (s)</th><th>DD (ft)</th></tr></thead>
+                <tbody>
+                  <tr><td>Baseline (no enhanced)</td><td class="num">0.71</td><td class="num">212.0</td></tr>
+                  <tr><td>4000 K</td><td class="num">0.66</td><td class="num">241.8</td></tr>
+                  <tr><td>5000 K</td><td class="num">0.77</td><td class="num">251.3</td></tr>
+                  <tr><td>6500 K</td><td class="num">0.94</td><td class="num">240.0</td></tr>
+                  <tr class="hl-r"><td><b>Blue Baseline ★</b></td><td class="num"><b>0.67</b></td><td class="num"><b>275.0</b></td></tr>
+                  <tr><td>Ice Blue</td><td class="num">1.20</td><td class="num">221.3</td></tr>
+                  <tr><td>Pure Royal Blue</td><td class="num">0.62</td><td class="num">209.1</td></tr>
+                  <tr><td>Sky Blue</td><td class="num">1.13</td><td class="num">215.9</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p style="color:var(--mute);font-size:.92rem;margin-top:12px">Blue Baseline strongest balanced result — +33.2 ft DD over 4000 K at unchanged RT, and +63 ft over baseline.</p>
+          </div>
+          <figure class="f"><img src="assets/msn-spectrum.jpg" alt="Madison spectrum performance comparison" loading="lazy">
+            <figcaption>Madison spectrum performance — RT &amp; DD</figcaption>
+          </figure>
+        </div>
+
+        <div class="grid g2" style="margin-top:22px">
+          <figure class="f"><img src="assets/msn-height.jpg" alt="Madison mounting height comparison" loading="lazy">
+            <figcaption>Mounting height — best: 15.0 ft</figcaption>
+          </figure>
+          <figure class="f"><img src="assets/msn-combined.jpg" alt="Madison combined spectrum and height comparison" loading="lazy">
+            <figcaption>Combined spectrum + height comparison</figcaption>
+          </figure>
+        </div>
+
+        <div class="card" style="margin-top:22px">
+          <h3>Recommended Madison configuration</h3>
+          <div class="config-line">
+            <span class="chip royal">Spectrum: Blue Baseline</span>
+            <span class="chip">Mounting height: 15.0 ft</span>
+            <span class="chip">Lateral: site-specific</span>
+            <span class="chip">Spill control: none</span>
+          </div>
+          <p style="margin-top:12px;font-size:.9rem">Lateral distance was not independently varied at Madison — placement set through site review and roadway-width scaling.</p>
+        </div>
+
+        <div class="grid g3" style="margin-top:22px">
+          <div class="card mini">
+            <figure class="f" style="padding:6px;margin-bottom:10px"><img src="assets/msn-mannequin.jpg" alt="Madison mannequin type results" loading="lazy"></figure>
+            <b>Mannequin type</b><p>The child mannequin had the highest RT and shortest DD — drivers recognized the smaller target later.</p>
+          </div>
+          <div class="card mini">
+            <figure class="f" style="padding:6px;margin-bottom:10px"><img src="assets/msn-spill.jpg" alt="Madison spill control results" loading="lazy"></figure>
+            <b>Spill control</b><p>50% spill control looked favorable but with very few trials — reference only.</p>
+          </div>
+          <div class="card mini">
+            <figure class="f" style="padding:6px;margin-bottom:10px"><img src="assets/msn-obstruction.jpg" alt="Madison obstruction results" loading="lazy"></figure>
+            <b>Obstruction</b><p>Results varied by condition — drivers may have approached the larger van more cautiously.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- cross-site -->
+    <div style="margin-top:56px" class="rv">
+      <h3>Cross-site synthesis</h3>
+      <div class="grid g2" style="margin-top:14px;align-items:start">
+        <div>
+          <figure class="f"><img src="assets/crosssite-spectrum.jpg" alt="Site-specific spectrum decision rankings" loading="lazy">
+            <figcaption>Spectrum ranking — (a) Milwaukee: Ice Blue · (b) Madison: Blue Baseline</figcaption>
+          </figure>
+          <div class="card" style="margin-top:14px">
+            <b style="font-family:'Archivo'">The winner depends on the road.</b>
+            <p style="margin-top:6px;font-size:.93rem"><span class="chip ice">Ice Blue</span> best for the two-lane residential (Milwaukee) context. <span class="chip royal">Blue Baseline</span> best for the wider urban (Madison) context — and carried forward as the <b style="color:var(--ink)">generalized recommendation</b>.</p>
+          </div>
+        </div>
+        <figure class="f"><img src="assets/clothing.jpg" alt="Clothing condition effects by lighting spectrum" loading="lazy">
+          <figcaption>Clothing effects — Ice Blue best at Milwaukee for both dark &amp; white clothing; Blue Baseline best at Madison</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- physiological metrics -->
+    <div style="margin-top:44px" class="rv">
+      <h3>Eye-tracking physiological metrics <span class="note">(N = 163)</span></h3>
+      <div class="tbl-wrap" style="margin-top:14px">
+        <table>
+          <thead><tr><th>Metric</th><th>Baseline</th><th>Enhanced</th><th>p</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td><b>Contrast ratio</b></td><td class="num">0.72</td><td class="num">0.88</td><td class="num">&lt;0.001</td><td>Higher pedestrian–background contrast ✓</td></tr>
+            <tr><td><b>Saccade velocity</b></td><td class="num">142.3°/s</td><td class="num">168.7°/s</td><td class="num">&lt;0.001</td><td>Faster visual scanning ✓</td></tr>
+            <tr><td><b>Pupil diameter</b></td><td class="num">5.31 mm</td><td class="num">4.87 mm</td><td class="num">&lt;0.001</td><td>Pupil constriction under enhanced light</td></tr>
+            <tr><td><b>Glare index</b></td><td class="num">0.18</td><td class="num">0.31</td><td class="num">&lt;0.001</td><td>Increased — monitor glare in design ⚠</td></tr>
+            <tr><td><b>Visual comfort</b></td><td class="num">3.82</td><td class="num">3.41</td><td class="num">0.002</td><td>Slight comfort reduction</td></tr>
+            <tr><td><b>Blink rate</b></td><td class="num">0.31 /s</td><td class="num">0.22 /s</td><td class="num">&lt;0.001</td><td>Reduced blink rate</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:10px">Contrast and saccade gains support the visibility benefit; glare metrics justify glare review in final design.</p>
+    </div>
+
+    <!-- final specs -->
+    <div style="margin-top:44px" class="rv">
+      <h3>Final recommended lighting specifications</h3>
+      <div class="tbl-wrap" style="margin-top:14px">
+        <table>
+          <thead><tr><th>Application context</th><th>Spectrum</th><th>Height</th><th>Lateral</th><th>Power</th></tr></thead>
+          <tbody>
+            <tr><td><b>2-lane residential</b> (Milwaukee-type)</td><td><span class="chip ice" style="margin:0">Ice Blue</span></td><td class="num">12.5 ft</td><td class="num">9.5 ft</td><td>Solar + battery</td></tr>
+            <tr><td><b>Wider urban</b> (Madison-type)</td><td><span class="chip royal" style="margin:0">Blue Baseline</span></td><td class="num">15.0 ft</td><td>Site-specific</td><td>Solar + battery</td></tr>
+            <tr class="hl-r"><td><b>Generalized guidance</b></td><td><span class="chip royal" style="margin:0">Blue Baseline</span></td><td>Width-scaled</td><td>Width-scaled</td><td>Solar + battery</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:10px">Design illuminance ≥ 20 lux vertical at the pedestrian plane (≈ 21 lux measured in the field) · no spill control required, but glare reviewed site-specifically.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUIDELINES ================= -->
+<section id="guidelines">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Design Guidelines</div>
+      <h2>From two sites to any Wisconsin crosswalk</h2>
+      <p>A planning-level framework — not a fixed standard. Every site still gets engineering review and nighttime verification.</p>
+    </div>
+
+    <div class="flow rv">
+      <div class="fstep"><b>Describe context</b><p>Width · lanes · speed · ambient lighting</p></div>
+      <div class="fstep"><b>Apply Blue Baseline</b><p>Spectrum from field results</p></div>
+      <div class="fstep"><b>Scale geometry</b><p>Height &amp; offset from roadway width</p></div>
+      <div class="fstep"><b>Predict RT &amp; DD</b><p>Blue Baseline OLS model</p></div>
+      <div class="fstep"><b>Screen &amp; review</b><p>DD vs. SSD · glare · ADA</p></div>
+    </div>
+
+    <figure class="f rv" style="margin-top:26px"><img src="assets/geometry-scaling.jpg" alt="Roadway geometry scaling for mounting height and lateral placement" loading="lazy">
+      <figcaption>Height (a), lateral placement (b) &amp; illumination angle (c) vs. road width — <b style="color:var(--mute)">example:</b> 44 ft four-lane roadway → ≈ 16.0 ft height, ≈ 11.0 ft lateral, then verified against pole feasibility, glare, and coverage</figcaption>
+    </figure>
+
+    <div class="grid g2" style="margin-top:26px;align-items:start">
+      <div class="rv">
+        <h3>Blue Baseline OLS models</h3>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Variable</th><th>RT</th><th>DD</th></tr></thead>
+            <tbody>
+              <tr><td>Mounting height</td><td class="num">0.038 *</td><td class="num">1.452</td></tr>
+              <tr><td>Lateral distance</td><td class="num">−0.004</td><td class="num">−1.271</td></tr>
+              <tr><td>Road width</td><td class="num">−0.001</td><td class="num">1.395</td></tr>
+              <tr class="hl"><td><b>Vehicle speed</b></td><td class="num">0.012</td><td class="num"><b>7.244 **</b></td></tr>
+              <tr><td>Child vs. adult</td><td class="num">0.106</td><td class="num">−34.568</td></tr>
+              <tr><td>High vs. medium ambient</td><td class="num">0.065 **</td><td class="num">3.457</td></tr>
+              <tr><td><b>R²</b></td><td class="num">0.208</td><td class="num"><b>0.451</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note" style="margin-top:10px">* p &lt; 0.1 · ** p &lt; 0.05 — the DD model (R² = 0.451) is the useful screen; predicted DD compares directly with SSD. Exploratory planning tool only.</p>
+      </div>
+      <figure class="f rv"><img src="assets/ssd-screening.jpg" alt="Stopping sight distance adequacy across roadway types" loading="lazy">
+        <figcaption>SSD adequacy — green: predicted DD &gt; required SSD · red: needs design revision</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid g2" style="margin-top:26px;align-items:stretch">
+      <div class="card rv">
+        <h3>Stopping sight distance screen</h3>
+        <p style="color:var(--mute);font-size:.93rem;margin:8px 0 14px">Predicted detection distance must exceed AASHTO-required SSD (2.5 s perception-reaction, f = 0.35, level grade).</p>
+        <p><span class="chip good">Pass</span> School-zone, residential, downtown, urban, most suburban</p>
+        <p style="margin-top:8px"><span class="chip amber">Marginal</span> High-speed 4-lane divided — verify before advancing</p>
+        <p style="margin-top:8px"><span class="chip bad">Fail</span> Rural 4-lane · high-speed 6-lane divided — revise design first</p>
+      </div>
+      <div class="card rv">
+        <h3>Required checks before installation</h3>
+        <div class="checks" style="margin-top:12px">
+          <span class="chip">Photometric coverage</span><span class="chip">Vertical illumination</span>
+          <span class="chip">Glare review</span><span class="chip">Beam direction</span>
+          <span class="chip">ADA clearance</span><span class="chip">Clear zone</span>
+          <span class="chip">Utilities</span><span class="chip">Solar access</span>
+          <span class="chip">Battery maintenance</span><span class="chip">Electrical code</span>
+          <span class="chip">Median pole review</span><span class="chip">Winter durability</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RECOMMENDATIONS ================= -->
+<section id="recommendations" class="alt">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">For WisDOT Review</div>
+      <h2>Implementation recommendations</h2>
+    </div>
+
+    <div class="tbl-wrap rv">
+      <table>
+        <thead><tr><th>Design element</th><th>Recommended direction</th></tr></thead>
+        <tbody>
+          <tr><td><b>Primary spectrum</b></td><td>Blue Baseline (blue-shifted LED) · Ice Blue for narrow two-lane residential contexts</td></tr>
+          <tr><td><b>Vertical illuminance</b></td><td>≥ 20 lux at the pedestrian plane (≈ 21 lux measured in the field)</td></tr>
+          <tr><td><b>Mounting height</b></td><td>Scale with roadway width (10.6 ft @ 22 ft road → 19.2 ft @ 72 ft road) · verify photometrically</td></tr>
+          <tr><td><b>Lateral placement</b></td><td>Scale with roadway width (5.6–13.7 ft) · adjust for poles, glare, coverage</td></tr>
+          <tr><td><b>Power source</b></td><td>Solar + battery storage, subject to site feasibility</td></tr>
+          <tr><td><b>Safety screening</b></td><td>Predicted detection distance must exceed required SSD for the approach speed</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid g3" style="margin-top:26px">
+      <div class="card mini rv"><b>1 · Lighting works</b><p>Blue-spectrum lighting reduced RT and increased DD vs. baseline at both sites.</p></div>
+      <div class="card mini rv"><b>2 · Spectrum alone isn't enough</b><p>It must combine with illuminance, contrast, coverage, glare control, and geometry.</p></div>
+      <div class="card mini rv"><b>3 · Optimal spectrum is site-dependent</b><p>Ice Blue for two-lane; Blue Baseline for wider roads and generalized use.</p></div>
+      <div class="card mini rv"><b>4 · Geometry drives transfer</b><p>Scale height and placement with roadway width — never copy between sites.</p></div>
+      <div class="card mini rv"><b>5 · SSD is the safety screen</b><p>Predicted DD must exceed required SSD, or the site needs additional review.</p></div>
+      <div class="card mini rv"><b>Next steps</b><p>Pilot deployments · larger datasets · adaptive dimming · winter validation · glare monitoring · statewide guidance updates.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TEAM ================= -->
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="kicker" style="justify-content:center">Research Team</div>
+      <h2>UW–Milwaukee · UW–Madison · TAPCO</h2>
+    </div>
+    <div class="team-grid rv">
+      <div class="person"><div class="av">TS</div><b>Xiaowei (Tom) Shi, Ph.D.</b><small>Principal Investigator<br>UW–Milwaukee<br>tomshi@uwm.edu</small></div>
+      <div class="person"><div class="av">XQ</div><b>Xiao Qin, P.E., Ph.D.</b><small>Co-PI<br>UW–Milwaukee<br>qinx@uwm.edu</small></div>
+      <div class="person"><div class="av">XL</div><b>Xiaopeng Li, P.E., Ph.D.</b><small>Co-PI<br>UW–Madison<br>xli2485@wisc.edu</small></div>
+      <div class="person"><div class="av">BS</div><b>Brian Scharles Sr.</b><small>Co-PI · Director of Product Innovation<br>TAPCO<br>brians@tapconet.com</small></div>
+      <div class="person"><div class="av">MF</div><b>Muhammad Fahad</b><small>Graduate Research Assistant<br>UW–Milwaukee<br>muhamm72@uwm.edu</small></div>
+    </div>
+    <p class="note rv" style="text-align:center;margin-top:26px">
+      Student team: Narayan Rai · Xiao Liang (UWM) · Bofeng Cao · Chengyuan Ma · Hangyu Li · Keke Long · Jiaxi Liu (UW–Madison) · Aleischa Kronshagen · Denise Lawien (TAPCO)<br>
+      With sincere thanks to the WisDOT Project Oversight Committee and all participants.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>Enhanced Light Crosswalk Illumination · WisDOT ID 0092-25-23 · Final Report, June 2026</div>
+    <div>Funded by the Wisconsin Department of Transportation &amp; FHWA</div>
+  </div>
+</footer>
+
+<!-- lightbox -->
+<div class="lb" id="lb" aria-hidden="true"><img id="lb-img" alt=""><div class="cap" id="lb-cap"></div></div>
+
+<script>
+/* =====================================================================
+   VIDEO SETUP — paste your YouTube video IDs here (the part after v=)
+   Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  "dQw4w9WgXcQ"
+===================================================================== */
+const VIDEO_IDS = {
+  YOUTUBE_ID_MILWAUKEE: "",   // Milwaukee demonstration video
+  YOUTUBE_ID_MADISON:   "",   // Madison demonstration video
+  YOUTUBE_ID_EYETRACK:  ""    // Eye-tracking pipeline video
+};
+document.querySelectorAll('[data-yt]').forEach(el=>{
+  const id = VIDEO_IDS[el.dataset.yt];
+  if(id && id.trim()){
+    el.innerHTML = `<iframe src="https://www.youtube.com/embed/${id.trim()}" title="Project video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen loading="lazy"></iframe>`;
+  }
+});
+
+/* reveal on scroll */
+const io = new IntersectionObserver(es=>{
+  es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+},{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+/* count-up */
+const cu = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const el=e.target, end=+el.dataset.count, t0=performance.now();
+    const step=n=>{const p=Math.min((n-t0)/1100,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step);};
+    requestAnimationFrame(step); cu.unobserve(el);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cu.observe(el));
+
+/* road-ruler fill */
+const ru = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting) return;
+    const max=+e.target.dataset.max||300;
+    e.target.querySelectorAll('.fill').forEach(f=>{
+      f.style.width=(100*(+f.dataset.ft)/max)+'%';
+    });
+    ru.unobserve(e.target);
+  });
+},{threshold:.4});
+document.querySelectorAll('.ruler').forEach(el=>ru.observe(el));
+
+/* tabs */
+document.querySelectorAll('.tab-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('on');b.setAttribute('aria-selected','false');});
+    document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('on'));
+    btn.classList.add('on');btn.setAttribute('aria-selected','true');
+    document.getElementById('tab-'+btn.dataset.tab).classList.add('on');
+  });
+});
+
+/* lightbox */
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lb-img'),lbCap=document.getElementById('lb-cap');
+document.querySelectorAll('figure.f img, .site-card .imgs img, .strip img, .mini figure img').forEach(img=>{
+  img.addEventListener('click',()=>{
+    lbImg.src=img.dataset.full||img.src;
+    const fig=img.closest('figure');
+    lbCap.textContent=img.dataset.cap||(fig&&fig.querySelector('figcaption')?fig.querySelector('figcaption').textContent:img.alt);
+    lb.classList.add('on');lb.setAttribute('aria-hidden','false');
+  });
+});
+lb.addEventListener('click',()=>{lb.classList.remove('on');lb.setAttribute('aria-hidden','true');lbImg.src='';});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.click();});
+
+/* active nav */
+const secs=[...document.querySelectorAll('section[id], header[id]')];
+const links=[...document.querySelectorAll('.nav-links a')];
+const nv=new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-35% 0px -55% 0px'});
+secs.forEach(s=>nv.observe(s));
+</script>
+</body>
+</html>
