@@ -15,9 +15,11 @@
   --panel:#101a2e;
   --panel-2:#0e1626;
   --line:#1d2a44;
-  --ink:#E9EFFB;
-  --mute:#93A1BE;
-  --dim:#6B7A99;
+  --ink:#EDF2FC;
+  --mute:#A3B2CE;
+  --dim:#7889A8;
+  --th-bg:linear-gradient(180deg,#1A2C52,#142344);
+  --th-ink:#BFD6FF;
   --ice:#6FD3FF;          /* Ice Blue — Milwaukee winner */
   --royal:#3D6BFF;        /* Blue Baseline — generalized winner */
   --amber:#FDB515;        /* crosswalk-sign yellow, warnings only */
@@ -28,6 +30,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
+section,header{scroll-margin-top:68px}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -36,7 +39,7 @@ body{
   background:var(--night);
   color:var(--ink);
   font-family:'IBM Plex Sans',system-ui,sans-serif;
-  font-size:16.5px;line-height:1.65;
+  font-size:17px;line-height:1.7;
   -webkit-font-smoothing:antialiased;
 }
 ::selection{background:rgba(111,211,255,.28)}
@@ -81,7 +84,7 @@ nav{
 }
 .hero h1{
   font-family:'Archivo';font-weight:800;line-height:1.04;letter-spacing:-.015em;
-  font-size:clamp(2.5rem,6.2vw,4.4rem);
+  font-size:clamp(2.4rem,5.8vw,4.1rem);
   margin:18px auto 20px;max-width:900px;
 }
 .hero .lede{color:var(--mute);font-size:1.16rem;max-width:640px;margin:0 auto}
@@ -91,10 +94,10 @@ nav{
 }
 .hs{
   background:rgba(16,26,46,.7);border:1px solid var(--line);border-radius:var(--r);
-  padding:16px 26px;min-width:180px;
+  padding:15px 22px;min-width:158px;
 }
 .hs b{
-  display:block;font-family:'Archivo';font-weight:800;font-size:2rem;line-height:1.1;color:var(--ice);
+  display:block;font-family:'Archivo';font-weight:800;font-size:1.85rem;line-height:1.1;color:var(--ice);
 }
 .hs.royal b{color:var(--royal);filter:brightness(1.35)}
 .hs small{font-family:'IBM Plex Mono';font-size:.72rem;letter-spacing:.05em;color:var(--mute)}
@@ -134,9 +137,9 @@ nav{
 }
 
 /* ---------- SECTIONS ---------- */
-section{padding:88px 0}
+section{padding:76px 0}
 section.alt{background:linear-gradient(180deg,var(--asphalt),transparent)}
-.sec-head{max-width:760px;margin-bottom:44px}
+.sec-head{max-width:780px;margin-bottom:36px}
 .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
 .kicker{
   display:inline-flex;align-items:center;gap:10px;
@@ -191,8 +194,9 @@ figure.f figcaption{
 table{width:100%;border-collapse:collapse;min-width:520px}
 th,td{padding:11px 16px;text-align:left;font-size:.93rem;border-bottom:1px solid var(--line)}
 th{
-  font-family:'IBM Plex Mono';font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
-  color:var(--dim);background:var(--panel-2);
+  font-family:'IBM Plex Mono';font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--th-ink);background:var(--th-bg);
+  border-bottom:2px solid rgba(111,211,255,.35);
 }
 td{color:var(--mute)}
 td b,td strong{color:var(--ink);font-weight:600}
@@ -338,11 +342,21 @@ tr.hl-r td{background:rgba(61,107,255,.1);color:var(--ink)}
 .team-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
 .person{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:20px;text-align:center}
 .person .av{
-  width:52px;height:52px;border-radius:99px;margin:0 auto 12px;display:grid;place-items:center;
+  width:56px;height:56px;border-radius:99px;margin:0 auto 12px;display:grid;place-items:center;
   background:linear-gradient(135deg,rgba(61,107,255,.35),rgba(111,211,255,.25));
   font-family:'Archivo';font-weight:800;color:var(--ink);
 }
-.person b{font-size:.92rem;display:block}
+.person img.photo{
+  width:96px;height:96px;border-radius:99px;object-fit:cover;margin:0 auto 14px;
+  border:2px solid rgba(111,211,255,.4);
+  box-shadow:0 0 0 4px rgba(111,211,255,.08), 0 8px 24px rgba(0,0,0,.4);
+}
+.person b{font-family:'Archivo';font-weight:700;font-size:.95rem;display:block;letter-spacing:.005em}
+.person .role{
+  display:inline-block;margin-top:6px;font-family:'IBM Plex Mono';font-size:.68rem;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ice);
+}
+.person.royal-role .role{color:#8FAAFF}
 .person small{color:var(--dim);font-size:.76rem;font-family:'IBM Plex Mono';display:block;margin-top:4px;line-height:1.5}
 
 footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--dim);font-size:.85rem}
@@ -398,6 +412,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   <div class="nav-in">
     <a class="brand" href="#top">Crosswalk<span>·</span>Illumination</a>
     <div class="nav-links">
+      <a href="#team">Team</a>
       <a href="#problem">Problem</a>
       <a href="#system">System</a>
       <a href="#testing">Field Testing</a>
@@ -406,7 +421,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
       <a href="#results">Results</a>
       <a href="#guidelines">Guidelines</a>
       <a href="#recommendations">Recommendations</a>
-      <a href="#team">Team</a>
     </div>
   </div>
 </nav>
@@ -424,6 +438,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
       <div class="hs"><b data-count="2">0</b><small>Wisconsin study sites</small></div>
       <div class="hs"><b data-count="7">0</b><small>spectral configurations</small></div>
       <div class="hs royal"><b>+63 ft</b><small>earlier detection · Madison</small></div>
+      <div class="hs"><b>+19 ft</b><small>earlier detection · Milwaukee</small></div>
     </div>
 
     <div class="partners">
@@ -438,6 +453,27 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
     <div class="beam"></div>
   </div>
 </header>
+
+<!-- ================= TEAM ================= -->
+<section id="team" class="alt">
+  <div class="wrap">
+    <div class="sec-head center rv">
+      <div class="kicker" style="justify-content:center">Research Team</div>
+      <h2>UW–Milwaukee · UW–Madison · TAPCO</h2>
+    </div>
+    <div class="team-grid rv">
+      <div class="person"><img class="photo" src="assets/team-shi.jpg" alt="Portrait of Xiaowei (Tom) Shi"><b>Xiaowei (Tom) Shi, Ph.D.</b><span class="role">Principal Investigator</span><small>Assistant Professor, UW–Milwaukee<br>tomshi@uwm.edu</small></div>
+      <div class="person royal-role"><img class="photo" src="assets/team-qin.jpg" alt="Portrait of Xiao Qin"><b>Xiao Qin, P.E., Ph.D.</b><span class="role">Co-PI</span><small>Professor, UW–Milwaukee<br>qinx@uwm.edu</small></div>
+      <div class="person royal-role"><img class="photo" src="assets/team-li.jpg" alt="Portrait of Xiaopeng Li"><b>Xiaopeng Li, P.E., Ph.D.</b><span class="role">Co-PI</span><small>Professor, UW–Madison<br>xli2485@wisc.edu</small></div>
+      <div class="person royal-role"><img class="photo" src="assets/team-scharles.jpg" alt="Portrait of Brian Scharles Sr."><b>Brian Scharles Sr.</b><span class="role">Co-PI</span><small>Director of Product Innovation, TAPCO<br>brians@tapconet.com</small></div>
+      <div class="person"><div class="av">MF</div><b>Muhammad Fahad</b><span class="role">Graduate Research Assistant</span><small>UW–Milwaukee<br>muhamm72@uwm.edu</small></div>
+    </div>
+    <p class="note rv" style="text-align:center;margin-top:24px">
+      Student team: Narayan Rai · Xiao Liang (UWM) · Bofeng Cao · Chengyuan Ma · Hangyu Li · Keke Long · Jiaxi Liu (UW–Madison) · Aleischa Kronshagen · Denise Lawien (TAPCO)<br>
+      With sincere thanks to the WisDOT Project Oversight Committee and all participants.
+    </p>
+  </div>
+</section>
 
 <!-- ================= PROBLEM ================= -->
 <section id="problem">
@@ -477,8 +513,11 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
     </div>
     <div class="grid g2" style="align-items:start">
       <div class="rv">
-        <figure class="f"><img src="assets/safewalk-render.jpg" alt="SafeWalk enhanced crosswalk illumination system deployed at a midblock crosswalk" loading="lazy">
-          <figcaption>SafeWalk™ deployed at a midblock crosswalk — Type IV downward beam</figcaption>
+        <figure class="f"><img src="assets/safewalk-illuminator.jpg" alt="SafeWalk crosswalk illuminators mounted on two poles lighting a pedestrian at a midblock crosswalk at night" loading="lazy">
+          <figcaption>SafeWalk™ crosswalk illuminator — dual-pole layout lighting the pedestrian, not just the pavement</figcaption>
+        </figure>
+        <figure class="f" style="margin-top:16px"><img src="assets/safewalk-render.jpg" alt="SafeWalk enhanced crosswalk illumination system deployed at a midblock crosswalk" loading="lazy">
+          <figcaption>SafeWalk™ deployed in the field — Type IV downward beam</figcaption>
         </figure>
         <div style="margin-top:16px">
           <span class="chip ice">≥ 20 lux vertical at pedestrian plane</span>
@@ -612,7 +651,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
     </div>
 
     <div class="rv" style="margin-top:34px">
-      <h3>Field effort under harsh conditions</h3>
+      <h3>Field effort under harsh and tough conditions</h3>
       <p style="color:var(--mute)">All 281 rounds ran at night — including light rain, wet pavement, and late-season cold.</p>
       <div class="strip">
         <img src="assets/field-1.jpg" alt="Instrumented test vehicle on wet night street" loading="lazy">
@@ -1061,27 +1100,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
   </div>
 </section>
 
-<!-- ================= TEAM ================= -->
-<section id="team">
-  <div class="wrap">
-    <div class="sec-head center rv">
-      <div class="kicker" style="justify-content:center">Research Team</div>
-      <h2>UW–Milwaukee · UW–Madison · TAPCO</h2>
-    </div>
-    <div class="team-grid rv">
-      <div class="person"><div class="av">TS</div><b>Xiaowei (Tom) Shi, Ph.D.</b><small>Principal Investigator<br>UW–Milwaukee<br>tomshi@uwm.edu</small></div>
-      <div class="person"><div class="av">XQ</div><b>Xiao Qin, P.E., Ph.D.</b><small>Co-PI<br>UW–Milwaukee<br>qinx@uwm.edu</small></div>
-      <div class="person"><div class="av">XL</div><b>Xiaopeng Li, P.E., Ph.D.</b><small>Co-PI<br>UW–Madison<br>xli2485@wisc.edu</small></div>
-      <div class="person"><div class="av">BS</div><b>Brian Scharles Sr.</b><small>Co-PI · Director of Product Innovation<br>TAPCO<br>brians@tapconet.com</small></div>
-      <div class="person"><div class="av">MF</div><b>Muhammad Fahad</b><small>Graduate Research Assistant<br>UW–Milwaukee<br>muhamm72@uwm.edu</small></div>
-    </div>
-    <p class="note rv" style="text-align:center;margin-top:26px">
-      Student team: Narayan Rai · Xiao Liang (UWM) · Bofeng Cao · Chengyuan Ma · Hangyu Li · Keke Long · Jiaxi Liu (UW–Madison) · Aleischa Kronshagen · Denise Lawien (TAPCO)<br>
-      With sincere thanks to the WisDOT Project Oversight Committee and all participants.
-    </p>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
     <div>Enhanced Light Crosswalk Illumination · WisDOT ID 0092-25-23 · Final Report, June 2026</div>
@@ -1098,9 +1116,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
    Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ  →  "dQw4w9WgXcQ"
 ===================================================================== */
 const VIDEO_IDS = {
-  YOUTUBE_ID_MILWAUKEE: "",   // Milwaukee demonstration video
-  YOUTUBE_ID_MADISON:   "",   // Madison demonstration video
-  YOUTUBE_ID_EYETRACK:  ""    // Eye-tracking pipeline video
+  YOUTUBE_ID_MILWAUKEE: "OokYYv6QPt8",   // Milwaukee demonstration video
+  YOUTUBE_ID_MADISON:   "8C_XTcvsUaI",   // Madison demonstration video
+  YOUTUBE_ID_EYETRACK:  "2JYV7oc0QAc"    // Eye-tracking pipeline video
 };
 document.querySelectorAll('[data-yt]').forEach(el=>{
   const id = VIDEO_IDS[el.dataset.yt];
