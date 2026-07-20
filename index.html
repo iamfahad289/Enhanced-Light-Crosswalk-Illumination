@@ -357,6 +357,13 @@ tr.hl-r td{background:rgba(61,107,255,.1);color:var(--ink)}
   text-transform:uppercase;color:var(--ice);
 }
 .person.royal-role .role{color:#8FAAFF}
+.logos{display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:14px;margin-top:28px}
+.logos .lg{
+  background:#fff;border-radius:12px;padding:10px 20px;display:grid;place-items:center;
+  min-height:66px;border:1px solid rgba(255,255,255,.15);
+}
+.logos .lg img{height:42px;width:auto;border-radius:0;background:transparent}
+.logos .lg img.tall{height:52px}
 .person small{color:var(--dim);font-size:.76rem;font-family:'IBM Plex Mono';display:block;margin-top:4px;line-height:1.5}
 
 footer{border-top:1px solid var(--line);padding:44px 0 60px;color:var(--dim);font-size:.85rem}
@@ -466,12 +473,18 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
       <div class="person royal-role"><img class="photo" src="assets/team-qin.jpg" alt="Portrait of Xiao Qin"><b>Xiao Qin, P.E., Ph.D.</b><span class="role">Co-PI</span><small>Professor, UW–Milwaukee<br>qinx@uwm.edu</small></div>
       <div class="person royal-role"><img class="photo" src="assets/team-li.jpg" alt="Portrait of Xiaopeng Li"><b>Xiaopeng Li, P.E., Ph.D.</b><span class="role">Co-PI</span><small>Professor, UW–Madison<br>xli2485@wisc.edu</small></div>
       <div class="person royal-role"><img class="photo" src="assets/team-scharles.jpg" alt="Portrait of Brian Scharles Sr."><b>Brian Scharles Sr.</b><span class="role">Co-PI</span><small>Director of Product Innovation, TAPCO<br>brians@tapconet.com</small></div>
-      <div class="person"><div class="av">MF</div><b>Muhammad Fahad</b><span class="role">Graduate Research Assistant</span><small>UW–Milwaukee<br>muhamm72@uwm.edu</small></div>
+      <div class="person"><img class="photo" src="assets/team-fahad.jpg" alt="Portrait of Muhammad Fahad"><b>Muhammad Fahad</b><span class="role">Graduate Research Assistant</span><small>Ph.D. Student, UW–Milwaukee<br>muhamm72@uwm.edu</small></div>
     </div>
     <p class="note rv" style="text-align:center;margin-top:24px">
       Student team: Narayan Rai · Xiao Liang (UWM) · Bofeng Cao · Chengyuan Ma · Hangyu Li · Keke Long · Jiaxi Liu (UW–Madison) · Aleischa Kronshagen · Denise Lawien (TAPCO)<br>
       With sincere thanks to the WisDOT Project Oversight Committee and all participants.
     </p>
+    <div class="logos rv">
+      <div class="lg"><img class="tall" src="assets/logo-wisdot.jpg" alt="Wisconsin Department of Transportation logo"></div>
+      <div class="lg"><img src="assets/logo-uwm.jpg" alt="University of Wisconsin–Milwaukee logo"></div>
+      <div class="lg"><img src="assets/logo-uwmadison.jpg" alt="University of Wisconsin–Madison logo"></div>
+      <div class="lg"><img src="assets/logo-tapco.jpg" alt="TAPCO — Safe travels logo"></div>
+    </div>
   </div>
 </section>
 
@@ -516,9 +529,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
         <figure class="f"><img src="assets/safewalk-illuminator.jpg" alt="SafeWalk crosswalk illuminators mounted on two poles lighting a pedestrian at a midblock crosswalk at night" loading="lazy">
           <figcaption>SafeWalk™ crosswalk illuminator — dual-pole layout lighting the pedestrian, not just the pavement</figcaption>
         </figure>
-        <figure class="f" style="margin-top:16px"><img src="assets/safewalk-render.jpg" alt="SafeWalk enhanced crosswalk illumination system deployed at a midblock crosswalk" loading="lazy">
-          <figcaption>SafeWalk™ deployed in the field — Type IV downward beam</figcaption>
-        </figure>
         <div style="margin-top:16px">
           <span class="chip ice">≥ 20 lux vertical at pedestrian plane</span>
           <span class="chip">12–15 ft mounting</span>
@@ -529,6 +539,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
           <span class="chip">≈2 W per LED · 12 V DC</span>
           <span class="chip good">Solar + battery compatible</span>
         </div>
+        <figure class="f" style="margin-top:16px"><img src="assets/spectra-prototypes.jpg" alt="Prototype spectral configurations assembled for testing" loading="lazy">
+          <figcaption>Prototype modules assembled for testing — 4000 K · 5000 K · 6500 K · RGB blue-light</figcaption>
+        </figure>
       </div>
       <div class="rv">
         <div class="tbl-wrap">
@@ -548,9 +561,6 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;
         <p class="note" style="margin-top:12px">Seven spectral configurations — the agency-recommended white range plus the blue-shifted range never before field-tested in Wisconsin.</p>
       </div>
     </div>
-    <figure class="f rv" style="margin-top:22px"><img src="assets/spectra-prototypes.jpg" alt="Prototype spectral configurations assembled for testing" loading="lazy">
-      <figcaption>Prototype modules assembled for testing — 4000 K · 5000 K · 6500 K · RGB blue-light</figcaption>
-    </figure>
   </div>
 </section>
 
