@@ -1,15 +1,15 @@
 # Enhanced Light Crosswalk Illumination
 
-Project showcase website for **WisDOT Research Project 0092-25-23** — *Enhanced Light Crosswalk Illumination* (Final Report, June 2026).
+Project showcase website for **WisDOT Research Project 0092-25-23***Enhanced Light Crosswalk Illumination*.
 
 A collaboration between **UW–Milwaukee**, **UW–Madison**, and **TAPCO**, sponsored by the **Wisconsin Department of Transportation** and FHWA.
 
-**Key finding:** Blue-spectrum crosswalk lighting let drivers detect pedestrians **~40 ft sooner** than the existing baseline — and ~26 ft sooner than conventional 4000 K white — with faster reaction times, across 281 nighttime field rounds at two Wisconsin sites.
+**Key finding:** Blue-spectrum crosswalk lighting let drivers detect pedestrians **~40 ft sooner** than the existing baselineand ~26 ft sooner than conventional 4000 K whitewith faster reaction times, across 281 nighttime field rounds at two Wisconsin sites.
 
 ## Site contents
 
-- `index.html` — the full single-page showcase (self-contained CSS/JS)
-- `assets/` — all figures and field photos extracted from the close-out presentation
+- `index.html`the full single-page showcase (self-contained CSS/JS)
+- `assets/`all figures and field photos extracted from the close-out presentation
 
 Sections: Problem → System (SafeWalk™, 7 spectra) → Field Testing (Madison & Milwaukee) → Method (deep-learning eye tracking) → Videos → Results (spectrum tables, recommended configurations, physiological metrics, final specs) → Design Guidelines (scaling, OLS, SSD screening) → WisDOT Recommendations → Team.
 
@@ -26,7 +26,7 @@ const VIDEO_IDS = {
 };
 ```
 
-3. Paste each video's ID between the quotes — the ID is the part after `v=` in the URL.
+3. Paste each video's ID between the quotesthe ID is the part after `v=` in the URL.
    Example: `https://www.youtube.com/watch?v=dQw4w9WgXcQ` → `"dQw4w9WgXcQ"`.
 4. Save and push. The placeholder cards automatically become embedded players.
 
@@ -37,7 +37,7 @@ const VIDEO_IDS = {
 3. Under *Build and deployment*, choose **Deploy from a branch**, select the `main` branch and the `/ (root)` folder, then save.
 4. The site publishes at `https://<username>.github.io/<repository-name>/`.
 
-No build step is required — everything is static.
+No build step is requiredeverything is static.
 
 ## Local preview
 
