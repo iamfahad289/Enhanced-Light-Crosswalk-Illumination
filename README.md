@@ -54,4 +54,4 @@ Student team: Narayan Rai, Xiao Liang (UWM); Bofeng Cao, Chengyuan Ma, Hangyu Li
 
 With sincere thanks to the WisDOT Project Oversight Committee and all participants.
 
-*This research was funded by the Wisconsin Department of Transportation and the Federal Highway Administration under Project 0092-25-23. The contents reflect the views of the authors, who are responsible for the facts and accuracy of the data presented.*
+*This research was funded by the Wisconsin Department of Transportation Project 0092-25-23. The contents reflect the views of the authors, who are responsible for the facts and accuracy of the data presented.*
