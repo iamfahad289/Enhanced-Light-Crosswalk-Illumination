@@ -1259,9 +1259,9 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
 
       <aside class="fb-side card rv">
         <h3>Where comments go</h3>
-        <p>Every comment reaches the project team at UW&ndash;Milwaukee. Technical and methodology questions are answered directly; implementation suggestions are collected for the WisDOT Project Oversight Committee.</p>
+        <p>Every comment reaches the principal investigator and the graduate research assistant at UW&ndash;Milwaukee. Technical and methodology questions are answered directly; implementation suggestions are collected for the WisDOT Project Oversight Committee.</p>
         <h3>Prefer email?</h3>
-        <p>Write to <a href="mailto:muhamm72@uwm.edu">muhamm72@uwm.edu</a> and reference WisDOT Project 0092-25-23.</p>
+        <p>Write to <a href="mailto:muhamm72@uwm.edu">muhamm72@uwm.edu</a> or <a href="mailto:tomshi@uwm.edu">tomshi@uwm.edu</a> and reference WisDOT Project 0092-25-23.</p>
         <h3>Looking for the data?</h3>
         <p>Field measurements, spectra, and model outputs are summarized in the final report. Ask here and the team will point you to the right section.</p>
       </aside>
@@ -1380,7 +1380,7 @@ secs.forEach(s=>nv.observe(s));
 
    OPTION B (leave formEndpoint empty)
    The form opens the visitor's own email app with the comment pre-filled
-   and addressed to you. Works immediately with no signup, but the visitor
+   and addressed to everyone in `recipients`. Works immediately with no signup, but the visitor
    has to press send in their mail app.
 
    OPTION C (optional, public thread visible to everyone)
@@ -1391,7 +1391,8 @@ secs.forEach(s=>nv.observe(s));
 ===================================================================== */
 const FEEDBACK = {
   formEndpoint: "",
-  fallbackEmail: "muhamm72@uwm.edu",
+  // Comments go to every address listed here.
+  recipients: ["muhamm72@uwm.edu", "tomshi@uwm.edu"],
   subjectTag: "Crosswalk Illumination site - comment",
   publicThread: {
     enabled: false,
@@ -1446,7 +1447,7 @@ const FEEDBACK = {
         `Email: ${email || '-'}\n` +
         `Topic: ${topic}\n\n` +
         `${msg}\n`;
-      window.location.href = 'mailto:' + FEEDBACK.fallbackEmail +
+      window.location.href = 'mailto:' + FEEDBACK.recipients.join(',') +
         '?subject=' + encodeURIComponent(FEEDBACK.subjectTag + ' (' + topic + ')') +
         '&body=' + encodeURIComponent(body);
       setStatus('Your email app is opening - press send there to deliver the comment.', 'ok');
@@ -1467,10 +1468,10 @@ const FEEDBACK = {
         form.reset();
         setStatus('Thanks - your comment reached the research team.', 'ok');
       }else{
-        setStatus('That did not send. Email ' + FEEDBACK.fallbackEmail + ' instead.', 'bad');
+        setStatus('That did not send. Email ' + FEEDBACK.recipients.join(' or ') + ' instead.', 'bad');
       }
     }catch(err){
-      setStatus('No connection. Email ' + FEEDBACK.fallbackEmail + ' instead.', 'bad');
+      setStatus('No connection. Email ' + FEEDBACK.recipients.join(' or ') + ' instead.', 'bad');
     }finally{
       btn.disabled = false;
     }

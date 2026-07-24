@@ -43,13 +43,13 @@ bottom of `index.html` (inside the last `<script>`).
 ### Option B - works right now, no signup (current default)
 
 Leave `formEndpoint` empty. When someone presses **Send comment**, their own email app opens
-with the comment pre-filled and addressed to `fallbackEmail`. They press send in their mail
-app to deliver it.
+with the comment pre-filled and addressed to **both** project addresses. They press send in
+their mail app to deliver it.
 
-Nothing to set up. Just change the address if needed:
+Nothing to set up. Add or change addresses here:
 
 ```js
-fallbackEmail: "muhamm72@uwm.edu",
+recipients: ["muhamm72@uwm.edu", "tomshi@uwm.edu"],
 ```
 
 ### Option A - recommended, comments arrive in your inbox automatically
@@ -66,8 +66,17 @@ const FEEDBACK = {
 };
 ```
 
-Visitors then submit without leaving the page, and each comment is emailed to you with the
-sender's name, affiliation, email, and topic. No GitHub account needed to comment.
+4. To notify **both** addresses, verify each one in Formspree
+   (**Account → Emails**), then open the form's **Rules** tab and add two rules, each with
+   the condition **Always → Send email**, one pointing at `muhamm72@uwm.edu` and one at
+   `tomshi@uwm.edu`. Formspree's free plan allows up to two linked notification addresses,
+   which is exactly what this project needs.
+
+Visitors then submit without leaving the page, and each comment is emailed to both of you
+with the sender's name, affiliation, email, and topic. No GitHub account needed to comment.
+
+Keep the `recipients` list in `index.html` accurate even when using Formspree - it is what
+the on-page fallback and the error messages show visitors if a submission fails.
 
 ### Option C - optional public thread everyone can read
 
