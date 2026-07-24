@@ -31,6 +31,67 @@ const VIDEO_IDS = {
 };
 ```
 
+## Comments and suggestions
+
+The site has a **Comments** section where reviewers can send questions, corrections, and
+implementation suggestions.
+
+GitHub Pages only serves static files, so it cannot store comments on its own. The form
+therefore uses one of the options below. Settings live in the `FEEDBACK` block near the
+bottom of `index.html` (inside the last `<script>`).
+
+### Option B - works right now, no signup (current default)
+
+Leave `formEndpoint` empty. When someone presses **Send comment**, their own email app opens
+with the comment pre-filled and addressed to `fallbackEmail`. They press send in their mail
+app to deliver it.
+
+Nothing to set up. Just change the address if needed:
+
+```js
+fallbackEmail: "muhamm72@uwm.edu",
+```
+
+### Option A - recommended, comments arrive in your inbox automatically
+
+1. Create a free account at <https://formspree.io> and add a new form (no card required;
+   free tier allows 50 submissions per month).
+2. Copy the endpoint it gives you, e.g. `https://formspree.io/f/abcdwxyz`.
+3. Paste it into `index.html`:
+
+```js
+const FEEDBACK = {
+  formEndpoint: "https://formspree.io/f/abcdwxyz",
+  ...
+};
+```
+
+Visitors then submit without leaving the page, and each comment is emailed to you with the
+sender's name, affiliation, email, and topic. No GitHub account needed to comment.
+
+### Option C - optional public thread everyone can read
+
+Adds a giscus thread backed by your repository's GitHub Discussions. Commenters need a
+GitHub account, so treat this as an addition to the form rather than a replacement.
+
+1. Enable **Discussions** in the repository settings.
+2. Install the giscus app: <https://github.com/apps/giscus>
+3. Go to <https://giscus.app>, enter the repository, and copy the generated
+   `data-repo-id` and `data-category-id`.
+4. Fill them in and flip the switch:
+
+```js
+publicThread: {
+  enabled: true,
+  repo: "iamfahad289/Enhanced-Light-Crosswalk-Illumination",
+  repoId: "R_xxxxxxxxxx",
+  category: "Announcements",
+  categoryId: "DIC_xxxxxxxxxx"
+}
+```
+
+The form includes a hidden spam-trap field, so automated submissions are discarded.
+
 ## Deploying on GitHub Pages
 
 1. Push this repository to GitHub.

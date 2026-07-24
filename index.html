@@ -436,6 +436,77 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
   .ruler{padding:22px 18px 18px}
 }
 
+
+/* ================= COMMENTS / FEEDBACK ================= */
+.fb-grid{display:grid;grid-template-columns:1.55fr .95fr;gap:var(--s3);align-items:start}
+@media(max-width:900px){.fb-grid{grid-template-columns:1fr}}
+
+.fb-form{display:flex;flex-direction:column;gap:var(--s3)}
+.fb-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--s3)}
+@media(max-width:620px){.fb-row{grid-template-columns:1fr}}
+
+.fb-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.fb-field label{
+  font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mute);display:flex;gap:8px;align-items:baseline;flex-wrap:wrap
+}
+.fb-field label .opt{text-transform:none;letter-spacing:0;color:var(--faint);font-size:.72rem}
+
+.fb-field input,.fb-field select,.fb-field textarea{
+  width:100%;background:var(--surface-2);color:var(--ink);
+  border:1px solid var(--edge);border-radius:var(--r-sm);
+  padding:12px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:.96rem;
+  transition:border-color .18s ease,box-shadow .18s ease,background .18s ease
+}
+.fb-field textarea{resize:vertical;min-height:132px;line-height:1.6}
+.fb-field input::placeholder,.fb-field textarea::placeholder{color:#54648199}
+.fb-field select{appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--faint) 50%),linear-gradient(135deg,var(--faint) 50%,transparent 50%);
+  background-position:calc(100% - 20px) 52%,calc(100% - 14px) 52%;
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:40px}
+.fb-field input:hover,.fb-field textarea:hover,.fb-field select:hover{border-color:#2C4370}
+.fb-field input:focus,.fb-field select:focus,.fb-field textarea:focus{
+  outline:none;border-color:var(--ice);background:var(--surface);
+  box-shadow:0 0 0 3px rgba(121,214,255,.16)
+}
+.fb-field.err input,.fb-field.err textarea{border-color:var(--bad);box-shadow:0 0 0 3px rgba(255,125,125,.13)}
+.fb-note{font-size:.78rem;color:var(--bad);font-family:'IBM Plex Mono',monospace}
+
+.fb-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.fb-actions{display:flex;align-items:center;gap:var(--s3);flex-wrap:wrap}
+.fb-send{
+  font-family:'IBM Plex Sans',sans-serif;font-size:.95rem;font-weight:600;
+  color:#05131F;background:linear-gradient(180deg,var(--ice) 0%,var(--ice-deep) 100%);
+  border:none;border-radius:var(--r-sm);padding:13px 26px;cursor:pointer;
+  letter-spacing:.01em;box-shadow:0 6px 18px rgba(55,166,221,.22);
+  transition:transform .16s ease,box-shadow .16s ease,filter .16s ease
+}
+.fb-send:hover{filter:brightness(1.07);box-shadow:0 9px 24px rgba(55,166,221,.3);transform:translateY(-1px)}
+.fb-send:active{transform:translateY(0)}
+.fb-send:focus-visible{outline:2px solid var(--ice);outline-offset:3px}
+.fb-send[disabled]{opacity:.55;cursor:not-allowed;transform:none;box-shadow:none;filter:none}
+
+.fb-status{font-family:'IBM Plex Mono',monospace;font-size:.82rem;color:var(--mute);margin:0}
+.fb-status.ok{color:var(--good)}
+.fb-status.bad{color:var(--bad)}
+
+.fb-side h3{font-size:1rem;margin-bottom:8px}
+.fb-side h3+p{margin-bottom:var(--s3)}
+.fb-side p{color:var(--mute);font-size:.93rem}
+.fb-side p:last-child{margin-bottom:0}
+.fb-side a{color:var(--ice);text-decoration:none;border-bottom:1px solid rgba(121,214,255,.3)}
+.fb-side a:hover{border-bottom-color:var(--ice)}
+
+/* optional public thread (off unless enabled in the script config) */
+#fb-thread{margin-top:var(--s5)}
+#fb-thread[hidden]{display:none}
+
+@media(prefers-reduced-motion:reduce){
+  .fb-send,.fb-field input,.fb-field select,.fb-field textarea{transition:none}
+  .fb-send:hover{transform:none}
+}
+
 </style>
 </head>
 <body>
@@ -453,6 +524,7 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
       <a href="#results">Results</a>
       <a href="#guidelines">Guidelines</a>
       <a href="#recommendations">Recommendations</a>
+      <a href="#feedback">Comments</a>
     </div>
   </div>
 </nav>
@@ -1133,6 +1205,73 @@ footer .wrap{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
   </div>
 </section>
 
+<!-- ================= COMMENTS / FEEDBACK ================= -->
+<section id="feedback">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div class="kicker">Comments</div>
+      <h2>Questions, corrections, and suggestions</h2>
+      <p>Reviewing this study? Send a comment to the research team at UW&ndash;Milwaukee. Technical questions, data requests, implementation suggestions, and corrections are all welcome.</p>
+    </div>
+
+    <div class="fb-grid">
+      <form class="fb-form card rv" id="fb-form" novalidate>
+        <div class="fb-row">
+          <div class="fb-field">
+            <label for="fb-name">Name</label>
+            <input id="fb-name" name="name" type="text" autocomplete="name" required placeholder="Your name">
+          </div>
+          <div class="fb-field">
+            <label for="fb-org">Agency or affiliation <span class="opt">optional</span></label>
+            <input id="fb-org" name="affiliation" type="text" autocomplete="organization" placeholder="WisDOT, county, consultant, university">
+          </div>
+        </div>
+
+        <div class="fb-row">
+          <div class="fb-field">
+            <label for="fb-email">Email <span class="opt">optional &mdash; only if you want a reply</span></label>
+            <input id="fb-email" name="email" type="email" autocomplete="email" placeholder="you@agency.gov">
+          </div>
+          <div class="fb-field">
+            <label for="fb-topic">Topic</label>
+            <select id="fb-topic" name="topic">
+              <option>General comment</option>
+              <option>Technical question</option>
+              <option>Implementation or design suggestion</option>
+              <option>Data or methodology question</option>
+              <option>Correction</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="fb-field">
+          <label for="fb-msg">Comment</label>
+          <textarea id="fb-msg" name="comment" rows="6" required placeholder="What would you like the team to know?"></textarea>
+        </div>
+
+        <div class="fb-hp"><label>Leave this field empty<input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></label></div>
+
+        <div class="fb-actions">
+          <button class="fb-send" type="submit" id="fb-send">Send comment</button>
+          <p class="fb-status" id="fb-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <aside class="fb-side card rv">
+        <h3>Where comments go</h3>
+        <p>Every comment reaches the project team at UW&ndash;Milwaukee. Technical and methodology questions are answered directly; implementation suggestions are collected for the WisDOT Project Oversight Committee.</p>
+        <h3>Prefer email?</h3>
+        <p>Write to <a href="mailto:muhamm72@uwm.edu">muhamm72@uwm.edu</a> and reference WisDOT Project 0092-25-23.</p>
+        <h3>Looking for the data?</h3>
+        <p>Field measurements, spectra, and model outputs are summarized in the final report. Ask here and the team will point you to the right section.</p>
+      </aside>
+    </div>
+
+    <!-- Optional public comment thread. Off by default; see FEEDBACK config in the script below. -->
+    <div id="fb-thread" hidden></div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     <div>Enhanced Light Crosswalk Illumination · WisDOT ID 0092-25-23</div>
@@ -1226,6 +1365,135 @@ const nv=new IntersectionObserver(es=>{
   });
 },{rootMargin:'-35% 0px -55% 0px'});
 secs.forEach(s=>nv.observe(s));
+</script>
+
+<script>
+/* =====================================================================
+   COMMENTS SETUP
+   GitHub Pages only serves files - it cannot store comments by itself,
+   so the form needs one of the two options below.
+
+   OPTION A (recommended, works for everyone - no account needed to comment)
+   Create a free form at https://formspree.io, then paste the endpoint here.
+   Comments arrive in your inbox. Free tier: 50 submissions/month.
+       formEndpoint: "https://formspree.io/f/xxxxxxxx"
+
+   OPTION B (leave formEndpoint empty)
+   The form opens the visitor's own email app with the comment pre-filled
+   and addressed to you. Works immediately with no signup, but the visitor
+   has to press send in their mail app.
+
+   OPTION C (optional, public thread visible to everyone)
+   Set publicThread.enabled = true to add a giscus thread powered by your
+   repo's GitHub Discussions. Commenters need a GitHub account, so use this
+   in addition to the form, not instead of it. Get your repo/category IDs
+   at https://giscus.app, then fill in the four values below.
+===================================================================== */
+const FEEDBACK = {
+  formEndpoint: "",
+  fallbackEmail: "muhamm72@uwm.edu",
+  subjectTag: "Crosswalk Illumination site - comment",
+  publicThread: {
+    enabled: false,
+    repo: "iamfahad289/Enhanced-Light-Crosswalk-Illumination",
+    repoId: "",
+    category: "Announcements",
+    categoryId: ""
+  }
+};
+
+(function(){
+  const form = document.getElementById('fb-form');
+  if(!form) return;
+  const btn    = document.getElementById('fb-send');
+  const status = document.getElementById('fb-status');
+  const F = id => document.getElementById(id);
+
+  const setStatus = (msg, kind) => {
+    status.textContent = msg;
+    status.className = 'fb-status' + (kind ? ' ' + kind : '');
+  };
+  const markError = (el, on) => el.closest('.fb-field').classList.toggle('err', on);
+
+  ['fb-name','fb-msg','fb-email'].forEach(id=>{
+    F(id).addEventListener('input', ()=>markError(F(id), false));
+  });
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    if(form.querySelector('[name="_gotcha"]').value) return;   // bot
+
+    const name  = F('fb-name').value.trim();
+    const org   = F('fb-org').value.trim();
+    const email = F('fb-email').value.trim();
+    const topic = F('fb-topic').value;
+    const msg   = F('fb-msg').value.trim();
+
+    // validation
+    markError(F('fb-name'), !name);
+    markError(F('fb-msg'),  !msg);
+    const badEmail = email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    markError(F('fb-email'), badEmail);
+
+    if(!name || !msg){ setStatus('Add your name and a comment before sending.', 'bad'); return; }
+    if(badEmail){ setStatus('That email address does not look right.', 'bad'); return; }
+
+    // ---- Option B: no endpoint configured -> hand off to the visitor's email app
+    if(!FEEDBACK.formEndpoint.trim()){
+      const body =
+        `Name: ${name}\n` +
+        `Affiliation: ${org || '-'}\n` +
+        `Email: ${email || '-'}\n` +
+        `Topic: ${topic}\n\n` +
+        `${msg}\n`;
+      window.location.href = 'mailto:' + FEEDBACK.fallbackEmail +
+        '?subject=' + encodeURIComponent(FEEDBACK.subjectTag + ' (' + topic + ')') +
+        '&body=' + encodeURIComponent(body);
+      setStatus('Your email app is opening - press send there to deliver the comment.', 'ok');
+      return;
+    }
+
+    // ---- Option A: post to the form service
+    btn.disabled = true;
+    setStatus('Sending...');
+    try{
+      const res = await fetch(FEEDBACK.formEndpoint, {
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({ name, affiliation: org, email, topic, comment: msg,
+                               _subject: FEEDBACK.subjectTag + ' (' + topic + ')' })
+      });
+      if(res.ok){
+        form.reset();
+        setStatus('Thanks - your comment reached the research team.', 'ok');
+      }else{
+        setStatus('That did not send. Email ' + FEEDBACK.fallbackEmail + ' instead.', 'bad');
+      }
+    }catch(err){
+      setStatus('No connection. Email ' + FEEDBACK.fallbackEmail + ' instead.', 'bad');
+    }finally{
+      btn.disabled = false;
+    }
+  });
+
+  // ---- Option C: public giscus thread
+  const pt = FEEDBACK.publicThread;
+  if(pt.enabled && pt.repoId && pt.categoryId){
+    const mount = document.getElementById('fb-thread');
+    mount.hidden = false;
+    const s = document.createElement('script');
+    s.src = 'https://giscus.app/client.js';
+    s.async = true; s.crossOrigin = 'anonymous';
+    Object.entries({
+      'data-repo': pt.repo, 'data-repo-id': pt.repoId,
+      'data-category': pt.category, 'data-category-id': pt.categoryId,
+      'data-mapping':'pathname', 'data-reactions-enabled':'1',
+      'data-emit-metadata':'0', 'data-input-position':'top',
+      'data-theme':'dark_dimmed', 'data-lang':'en'
+    }).forEach(([k,v])=>s.setAttribute(k,v));
+    mount.appendChild(s);
+  }
+})();
 </script>
 </body>
 </html>
